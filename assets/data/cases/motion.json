@@ -1,0 +1,918 @@
+{
+  "id": "motion",
+  "title": "Candidate Localization and Motion Verification",
+  "subtitle": "Localizing an action in a 50.6-minute video",
+  "query": "When are fries scooped with a metal skimmer into a holding trough?",
+  "duration": 3039.0,
+  "benchmark": "ExtremeWhenBench",
+  "groundTruth": [
+    570.0,
+    582.0
+  ],
+  "model": "Qwen3.5-27B",
+  "variants": {
+    "base": {
+      "name": "Base Skill",
+      "metrics": {
+        "prediction": [
+          895.0,
+          897.0
+        ],
+        "iou": 0.0,
+        "cumulative_visual_tokens": 198680,
+        "cumulative_image_tokens": 29700,
+        "cumulative_video_tokens": 168980,
+        "model_calls": 12,
+        "local_tool_calls": 6,
+        "image_observations": 1,
+        "video_observations": 4
+      },
+      "steps": [
+        {
+          "number": 1,
+          "recordIndex": 2,
+          "event": "tool_call",
+          "title": "Establish the search horizon",
+          "reasoning": "I need to find the moment in this 3039-second video where fries are scooped with a metal skimmer into a holding trough. This is a specific action that I need to locate.\n\nLet me start by getting the video metadata to understand the video better, then I'll need to search through the video to find this specific event.\n\nFirst, let me get the metadata.",
+          "media": [],
+          "parameters": {},
+          "focus": "",
+          "tool": "probe_media",
+          "phase": "setup",
+          "summary": "The source video spans 3039 seconds."
+        },
+        {
+          "number": 2,
+          "recordIndex": 3,
+          "event": "tool_call",
+          "title": "Sample 15 frames",
+          "reasoning": "The video is about 3039 seconds long. I need to find when fries are scooped with a metal skimmer into a holding trough. This is a specific action that likely occurs in a kitchen or food preparation setting.\n\nLet me start by sampling some frames at different points in the video to get a sense of the content and find relevant sections.",
+          "media": [
+            "motion-base-001",
+            "motion-base-002",
+            "motion-base-003",
+            "motion-base-004",
+            "motion-base-005",
+            "motion-base-006",
+            "motion-base-007",
+            "motion-base-008",
+            "motion-base-009",
+            "motion-base-010",
+            "motion-base-011",
+            "motion-base-012",
+            "motion-base-013",
+            "motion-base-014",
+            "motion-base-015"
+          ],
+          "parameters": {
+            "timestamps": [
+              100,
+              300,
+              500,
+              700,
+              900,
+              1100,
+              1300,
+              1500,
+              1700,
+              1900,
+              2100,
+              2300,
+              2500,
+              2700,
+              2900
+            ],
+            "width": 640
+          },
+          "focus": "",
+          "tool": "extract_frames_at",
+          "phase": "prepare",
+          "summary": "Extract 15 timestamped frames for the next observation."
+        },
+        {
+          "number": 3,
+          "recordIndex": 4,
+          "event": "inspect_images",
+          "title": "Inspect the sparse overview",
+          "reasoning": "Look for scenes showing fries being scooped with a metal skimmer into a holding trough. Identify which time ranges show kitchen/food preparation scenes with fries, skimmers, and holding troughs.",
+          "media": [
+            "motion-base-001",
+            "motion-base-002",
+            "motion-base-003",
+            "motion-base-004",
+            "motion-base-005",
+            "motion-base-006",
+            "motion-base-007",
+            "motion-base-008",
+            "motion-base-009",
+            "motion-base-010",
+            "motion-base-011",
+            "motion-base-012",
+            "motion-base-013",
+            "motion-base-014",
+            "motion-base-015"
+          ],
+          "parameters": {},
+          "focus": "Look for scenes showing fries being scooped with a metal skimmer into a holding trough. Identify which time ranges show kitchen/food preparation scenes with fries, skimmers, and holding troughs.",
+          "tool": "inspect_images",
+          "phase": "observe",
+          "summary": "Look for scenes showing fries being scooped with a metal skimmer into a holding trough. Identify which time ranges show kitchen/food preparation scenes with fries, skimmers, and holding troughs."
+        },
+        {
+          "number": 4,
+          "recordIndex": 5,
+          "event": "tool_call",
+          "title": "Extract 850–950 s",
+          "reasoning": "Based on the sample frames, I can see this is a video about food production. The frames show:\n- 100s: Crates of what looks like potatoes or raw fries\n- 300s: Some processing equipment\n- 500s: Equipment with a person in white coat\n- 700s: Worker in protective gear\n- 900s: Fried fries in a metal basket - this looks promising!\n- 1100s: Two people talking\n- 1300s: Some white product on a conveyor\n- 1500s: Fried food products\n- 1700s+: Grapes and other unrelated content\n\nThe frame at 900 seconds shows fried fries in a metal basket, which is very relevant to the question about scooping fries with a metal skimmer. Let me focus on the area around 900 seconds to find the specific action of scooping fries with a metal skimmer into a holding trough.\n\nLet me extract a video clip around the 900 second mark to see the action more clearly.",
+          "media": [
+            "motion-base-017"
+          ],
+          "parameters": {
+            "start": 850,
+            "end": 950,
+            "fps": 5,
+            "width": 640
+          },
+          "focus": "",
+          "tool": "extract_video_clip",
+          "phase": "prepare",
+          "summary": "Prepare a 100-second video observation over 850–950 s."
+        },
+        {
+          "number": 5,
+          "recordIndex": 6,
+          "event": "inspect_video",
+          "title": "Inspect the first clip",
+          "reasoning": "Find the exact moment when fries are scooped with a metal skimmer into a holding trough. Look for the skimmer being used to scoop fries and transfer them into a trough.",
+          "media": [
+            "motion-base-017"
+          ],
+          "parameters": {},
+          "focus": "Find the exact moment when fries are scooped with a metal skimmer into a holding trough. Look for the skimmer being used to scoop fries and transfer them into a trough.",
+          "tool": "inspect_video",
+          "phase": "observe",
+          "summary": "Find the exact moment when fries are scooped with a metal skimmer into a holding trough. Look for the skimmer being used to scoop fries and transfer them into a trough."
+        },
+        {
+          "number": 6,
+          "recordIndex": 7,
+          "event": "tool_call",
+          "title": "Extract 880–920 s",
+          "reasoning": "The video I inspected (850-950 seconds) shows a woman eating fries at an outdoor table, not the industrial fry preparation I'm looking for. The frame at 900 seconds showed fries in a metal basket, which suggests the actual scooping action might be nearby. Let me look at frames around that time more closely and extract a video clip from a different time range that shows the industrial fry preparation process.\n\nLooking at the sample frames:\n- 900s: Shows fries in a metal basket (this looks like the right context)\n- 1300s: Shows some kind of food processing with white coating\n- 1500s: Shows breaded food items\n\nThe 900s frame shows what appears to be fries in a metal basket, which is likely part of the frying/scooping process. Let me extract a clip around that time to find the exact scooping action.",
+          "media": [
+            "motion-base-016"
+          ],
+          "parameters": {
+            "start": 880,
+            "end": 920,
+            "fps": 5,
+            "width": 640
+          },
+          "focus": "",
+          "tool": "extract_video_clip",
+          "phase": "prepare",
+          "summary": "Prepare a 40-second video observation over 880–920 s."
+        },
+        {
+          "number": 7,
+          "recordIndex": 8,
+          "event": "inspect_video",
+          "title": "Revisit the same candidate",
+          "reasoning": "Find the exact moment when fries are scooped with a metal skimmer into a holding trough. Look for the skimmer being used to scoop fries and transfer them into a trough.",
+          "media": [
+            "motion-base-016"
+          ],
+          "parameters": {},
+          "focus": "Find the exact moment when fries are scooped with a metal skimmer into a holding trough. Look for the skimmer being used to scoop fries and transfer them into a trough.",
+          "tool": "inspect_video",
+          "phase": "observe",
+          "summary": "Find the exact moment when fries are scooped with a metal skimmer into a holding trough. Look for the skimmer being used to scoop fries and transfer them into a trough."
+        },
+        {
+          "number": 8,
+          "recordIndex": 9,
+          "event": "tool_call",
+          "title": "Extract 890–915 s",
+          "reasoning": "The video I just inspected (880-920 seconds) shows a title sequence and then potato processing, but I don't see the specific action of fries being scooped with a metal skimmer into a holding trough. Let me look at the earlier frames I sampled. At 900 seconds, I saw a metal basket with fries in it. Let me extract a clip around that time to see if there's a skimmer action.\n\nLooking at the frame at 900 seconds, I can see a metal basket with fries. This might be related to the scooping action. Let me extract a clip around 890-910 seconds to see the context better.\n\nActually, looking more carefully at the frames, at 900 seconds I see a metal basket with fries. This could be the skimmer/basket being used. Let me extract a clip around this time to see the action more clearly.",
+          "media": [
+            "motion-base-018"
+          ],
+          "parameters": {
+            "start": 890,
+            "end": 915,
+            "fps": 5,
+            "width": 640
+          },
+          "focus": "",
+          "tool": "extract_video_clip",
+          "phase": "prepare",
+          "summary": "Prepare a 25-second video observation over 890–915 s."
+        },
+        {
+          "number": 9,
+          "recordIndex": 10,
+          "event": "inspect_video",
+          "title": "Inspect the overlapping clip",
+          "reasoning": "Find the exact moment when fries are scooped with a metal skimmer into a holding trough. Look for the skimmer being used to scoop fries and transfer them into a trough.",
+          "media": [
+            "motion-base-018"
+          ],
+          "parameters": {},
+          "focus": "Find the exact moment when fries are scooped with a metal skimmer into a holding trough. Look for the skimmer being used to scoop fries and transfer them into a trough.",
+          "tool": "inspect_video",
+          "phase": "observe",
+          "summary": "Find the exact moment when fries are scooped with a metal skimmer into a holding trough. Look for the skimmer being used to scoop fries and transfer them into a trough."
+        },
+        {
+          "number": 10,
+          "recordIndex": 11,
+          "event": "tool_call",
+          "title": "Extract 895–905 s",
+          "reasoning": "Looking at the video clips I've inspected, I can see the fries production process. In the clip from 890-915 seconds, I can see:\n\n1. At around 6-8 seconds into the clip (which would be around 896-898 seconds in the source video), there's a metal skimmer being used to scoop fries from hot oil\n2. The skimmer lifts the fries out of the oil\n3. The fries are then transferred into what appears to be a holding trough or basket\n\nLet me look more carefully at the timing. In the motion-base-018:\n- Around 6-7 seconds: The skimmer is in the oil\n- Around 7-8 seconds: The skimmer lifts fries out of the oil\n- Around 8-9 seconds: The fries are being transferred\n\nSo in source video time, this would be approximately 896-900 seconds.\n\nLet me extract a more focused clip to get the exact timing.",
+          "media": [
+            "motion-base-019"
+          ],
+          "parameters": {
+            "end": 905,
+            "fps": 10,
+            "start": 895,
+            "width": 640
+          },
+          "focus": "",
+          "tool": "extract_video_clip",
+          "phase": "prepare",
+          "summary": "Prepare a 10-second video observation over 895–905 s."
+        },
+        {
+          "number": 11,
+          "recordIndex": 12,
+          "event": "inspect_video",
+          "title": "Check the local action",
+          "reasoning": "Find the exact moment when fries are scooped with a metal skimmer into a holding trough. Look for the skimmer being used to scoop fries and transfer them into a trough.",
+          "media": [
+            "motion-base-019"
+          ],
+          "parameters": {},
+          "focus": "Find the exact moment when fries are scooped with a metal skimmer into a holding trough. Look for the skimmer being used to scoop fries and transfer them into a trough.",
+          "tool": "inspect_video",
+          "phase": "observe",
+          "summary": "Find the exact moment when fries are scooped with a metal skimmer into a holding trough. Look for the skimmer being used to scoop fries and transfer them into a trough."
+        },
+        {
+          "number": 12,
+          "recordIndex": 13,
+          "event": "final_answer",
+          "title": "Return the predicted interval",
+          "reasoning": "Looking at the video clip I just inspected (895-905 seconds), I can see:\n\n1. At the beginning (0.1-1.1 seconds), there's a metal trough/container with fries being transferred from one section to another through a chute. This appears to be fries moving from a fryer into a holding trough.\n\n2. Then there are shots of fries being fried in oil (1.2-2.9 seconds)\n\n3. Then fries in a fryer basket (3.0-4.5 seconds)\n\n4. Then a metal basket being lifted with fries (4.6-5.5 seconds)\n\nThe key moment I'm looking for is when fries are scooped with a metal skimmer into a holding trough. Looking at the first few seconds of this clip (895-896 seconds in source time), I can see fries being transferred through a metal chute into a holding trough. This appears to be the action described.\n\nLet me look more carefully at the timestamps. The clip starts at 895 seconds and shows:\n- 0.1-1.1 seconds of the clip (895-896 seconds source time): Fries being transferred through a metal chute into a holding trough\n- This matches the description of \"fries scooped with a metal skimmer into a holding trough\"\n\nThe action appears to happen from approximately 895 to 897 seconds in the source video. Let me verify this is the correct moment by checking if there's a metal skimmer being used.\n\nLooking at the frames, I can see a metal chute/skimmer mechanism transferring fries from the fryer into a holding trough. This is the industrial version of scooping fries with a metal skimmer.\n\nThe event appears to be from approximately 895 to 897 seconds.",
+          "media": [],
+          "parameters": {},
+          "focus": "",
+          "phase": "answer",
+          "tool": "final_answer",
+          "answer": "The event happens in 895 - 897 seconds.",
+          "summary": "The video shows fries being transferred from a fryer through a metal chute/skimmer mechanism into a holding trough. This occurs at the beginning of the 895-905 second clip, specifically around 895-897 seconds in source time. The metal skimmer/chute is clearly visible transferring the fried fries into the holding container."
+        }
+      ],
+      "media": [
+        {
+          "id": "motion-base-001",
+          "src": "assets/images/cases/motion/base/motion-base-001.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-001-thumb.webp",
+          "kind": "image",
+          "time": 100.0,
+          "caption": "100 s"
+        },
+        {
+          "id": "motion-base-002",
+          "src": "assets/images/cases/motion/base/motion-base-002.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-002-thumb.webp",
+          "kind": "image",
+          "time": 300.0,
+          "caption": "300 s"
+        },
+        {
+          "id": "motion-base-003",
+          "src": "assets/images/cases/motion/base/motion-base-003.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-003-thumb.webp",
+          "kind": "image",
+          "time": 500.0,
+          "caption": "500 s"
+        },
+        {
+          "id": "motion-base-004",
+          "src": "assets/images/cases/motion/base/motion-base-004.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-004-thumb.webp",
+          "kind": "image",
+          "time": 700.0,
+          "caption": "700 s"
+        },
+        {
+          "id": "motion-base-005",
+          "src": "assets/images/cases/motion/base/motion-base-005.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-005-thumb.webp",
+          "kind": "image",
+          "time": 900.0,
+          "caption": "900 s"
+        },
+        {
+          "id": "motion-base-006",
+          "src": "assets/images/cases/motion/base/motion-base-006.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-006-thumb.webp",
+          "kind": "image",
+          "time": 1100.0,
+          "caption": "1100 s"
+        },
+        {
+          "id": "motion-base-007",
+          "src": "assets/images/cases/motion/base/motion-base-007.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-007-thumb.webp",
+          "kind": "image",
+          "time": 1300.0,
+          "caption": "1300 s"
+        },
+        {
+          "id": "motion-base-008",
+          "src": "assets/images/cases/motion/base/motion-base-008.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-008-thumb.webp",
+          "kind": "image",
+          "time": 1500.0,
+          "caption": "1500 s"
+        },
+        {
+          "id": "motion-base-009",
+          "src": "assets/images/cases/motion/base/motion-base-009.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-009-thumb.webp",
+          "kind": "image",
+          "time": 1700.0,
+          "caption": "1700 s"
+        },
+        {
+          "id": "motion-base-010",
+          "src": "assets/images/cases/motion/base/motion-base-010.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-010-thumb.webp",
+          "kind": "image",
+          "time": 1900.0,
+          "caption": "1900 s"
+        },
+        {
+          "id": "motion-base-011",
+          "src": "assets/images/cases/motion/base/motion-base-011.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-011-thumb.webp",
+          "kind": "image",
+          "time": 2100.0,
+          "caption": "2100 s"
+        },
+        {
+          "id": "motion-base-012",
+          "src": "assets/images/cases/motion/base/motion-base-012.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-012-thumb.webp",
+          "kind": "image",
+          "time": 2300.0,
+          "caption": "2300 s"
+        },
+        {
+          "id": "motion-base-013",
+          "src": "assets/images/cases/motion/base/motion-base-013.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-013-thumb.webp",
+          "kind": "image",
+          "time": 2500.0,
+          "caption": "2500 s"
+        },
+        {
+          "id": "motion-base-014",
+          "src": "assets/images/cases/motion/base/motion-base-014.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-014-thumb.webp",
+          "kind": "image",
+          "time": 2700.0,
+          "caption": "2700 s"
+        },
+        {
+          "id": "motion-base-015",
+          "src": "assets/images/cases/motion/base/motion-base-015.jpg",
+          "thumb": "assets/images/cases/motion/base/motion-base-015-thumb.webp",
+          "kind": "image",
+          "time": 2900.0,
+          "caption": "2900 s"
+        },
+        {
+          "id": "motion-base-016",
+          "src": "assets/videos/cases/motion/base/motion-base-016.mp4",
+          "thumb": "assets/images/cases/motion/base/motion-base-016-thumb.webp",
+          "kind": "video",
+          "start": 880.0,
+          "end": 920.0,
+          "caption": "880–920 s"
+        },
+        {
+          "id": "motion-base-017",
+          "src": "assets/videos/cases/motion/base/motion-base-017.mp4",
+          "thumb": "assets/images/cases/motion/base/motion-base-017-thumb.webp",
+          "kind": "video",
+          "start": 850.0,
+          "end": 950.0,
+          "caption": "850–950 s"
+        },
+        {
+          "id": "motion-base-018",
+          "src": "assets/videos/cases/motion/base/motion-base-018.mp4",
+          "thumb": "assets/images/cases/motion/base/motion-base-018-thumb.webp",
+          "kind": "video",
+          "start": 890.0,
+          "end": 915.0,
+          "caption": "890–915 s"
+        },
+        {
+          "id": "motion-base-019",
+          "src": "assets/videos/cases/motion/base/motion-base-019.mp4",
+          "thumb": "assets/images/cases/motion/base/motion-base-019-thumb.webp",
+          "kind": "video",
+          "start": 895.0,
+          "end": 905.0,
+          "caption": "895–905 s"
+        }
+      ]
+    },
+    "evolved": {
+      "name": "Evolved Skill",
+      "metrics": {
+        "prediction": [
+          570.0,
+          582.0
+        ],
+        "iou": 1.0,
+        "cumulative_visual_tokens": 96810,
+        "cumulative_image_tokens": 84930,
+        "cumulative_video_tokens": 11880,
+        "model_calls": 8,
+        "local_tool_calls": 4,
+        "image_observations": 2,
+        "video_observations": 1
+      },
+      "steps": [
+        {
+          "number": 1,
+          "recordIndex": 2,
+          "event": "tool_call",
+          "title": "Establish the search horizon",
+          "reasoning": "This is a video temporal grounding task. I need to find when \"fries are scooped with a metal skimmer into a holding trough\" in a 3039-second video.\n\nLet me start by getting the video metadata to understand the duration and structure, then do a broad search to find candidate moments.\n\nFirst, I'll probe the media to get basic metadata.",
+          "media": [],
+          "parameters": {},
+          "focus": "",
+          "tool": "probe_media",
+          "phase": "setup",
+          "summary": "The source video spans 3039 seconds."
+        },
+        {
+          "number": 2,
+          "recordIndex": 3,
+          "event": "tool_call",
+          "title": "Build eight contact sheets",
+          "reasoning": "The video is about 3039 seconds long. I need to find when fries are scooped with a metal skimmer into a holding trough. This is a specific cooking action that likely occurs in a kitchen/food preparation setting. Let me start by doing a broad search to find relevant scenes.",
+          "media": [
+            "motion-evolved-001",
+            "motion-evolved-002",
+            "motion-evolved-003",
+            "motion-evolved-004",
+            "motion-evolved-005",
+            "motion-evolved-006",
+            "motion-evolved-007",
+            "motion-evolved-008"
+          ],
+          "parameters": {
+            "start": 0,
+            "end": 3039,
+            "sheet_count": 8,
+            "frame_count_per_sheet": 24,
+            "cell_width": 320
+          },
+          "focus": "",
+          "tool": "make_contact_sheet_pack",
+          "phase": "prepare",
+          "summary": "Organize 192 sampled frames into eight timestamped contact sheets for global comparison."
+        },
+        {
+          "number": 3,
+          "recordIndex": 4,
+          "event": "inspect_images",
+          "title": "Compare the global evidence",
+          "reasoning": "I have 8 contact sheets covering the entire video. Let me inspect them to find scenes related to fries being scooped with a metal skimmer into a holding trough.",
+          "media": [
+            "motion-evolved-001",
+            "motion-evolved-002",
+            "motion-evolved-003",
+            "motion-evolved-004",
+            "motion-evolved-005",
+            "motion-evolved-006",
+            "motion-evolved-007",
+            "motion-evolved-008"
+          ],
+          "parameters": {},
+          "focus": "Look for scenes showing fries being scooped with a metal skimmer into a holding trough. I'm looking for kitchen/food preparation scenes, specifically where someone is using a metal skimmer (a flat mesh tool) to scoop fried food (fries) and transfer them into a holding container or trough. Please identify any cells that show this action or related cooking scenes with fries, skimmers, or food preparation. Report the sheet number, cell position, and approximate timestamp for any matching or near-miss cells.",
+          "tool": "inspect_images",
+          "phase": "observe",
+          "summary": "I have 8 contact sheets covering the entire video. Let me inspect them to find scenes related to fries being scooped with a metal skimmer into a holding trough."
+        },
+        {
+          "number": 4,
+          "recordIndex": 5,
+          "event": "tool_call",
+          "title": "Sample 550–590 s at 2 s intervals",
+          "reasoning": "Looking at the contact sheets, I can see several food preparation scenes. Let me identify the most relevant ones:\n\nFrom Sheet 1 (0-379s):\n- 7.913s: Shows what looks like a fryer with fries being cut\n- 55.391s: Shows someone in a kitchen with what appears to be fries in the background\n- 71.217s: Shows a person in a kitchen setting\n- 87.043s: Shows food preparation with what looks like fries in containers\n- 213.651s: Shows someone handling fries on a plate\n- 245.303s: Shows a fryer basket\n- 261.128s: Shows potatoes being processed\n- 276.954s: Shows potato peeling\n\nFrom Sheet 2 (379-759s):\n- 387.736s: Shows potatoes being processed\n- 435.214s: Shows someone working with what looks like a fryer\n- 545.996s: Shows bubbling oil (frying)\n- 561.822s: Shows fries being scooped with what looks like a metal skimmer!\n- 577.648s: Shows fries being scooped with a metal skimmer into a holding trough - this looks very promising!\n- 656.778s: Shows fries being tossed in the air\n- 735.908s: Shows fries in blue containers\n- 751.734s: Shows fries in a container\n\nThe most promising cells appear to be:\n- Sheet 2, around 561.822s - shows fries being scooped\n- Sheet 2, around 577.648s - shows fries being scooped with a metal skimmer into a holding trough\n\nLet me focus on the area around 560-580 seconds to get a more precise view of this action.",
+          "media": [
+            "motion-evolved-009",
+            "motion-evolved-010",
+            "motion-evolved-011",
+            "motion-evolved-012",
+            "motion-evolved-013",
+            "motion-evolved-014",
+            "motion-evolved-015",
+            "motion-evolved-016",
+            "motion-evolved-017",
+            "motion-evolved-018",
+            "motion-evolved-019",
+            "motion-evolved-020",
+            "motion-evolved-021",
+            "motion-evolved-022",
+            "motion-evolved-023",
+            "motion-evolved-024",
+            "motion-evolved-025",
+            "motion-evolved-026",
+            "motion-evolved-027",
+            "motion-evolved-028",
+            "motion-evolved-029"
+          ],
+          "parameters": {
+            "windows": [
+              {
+                "end": 590,
+                "label": "fries_scooping_area",
+                "start": 550,
+                "step_seconds": 2
+              }
+            ],
+            "width": 960
+          },
+          "focus": "",
+          "tool": "extract_frames_at",
+          "phase": "prepare",
+          "summary": "Extract 21 timestamped frames for the next observation."
+        },
+        {
+          "number": 5,
+          "recordIndex": 6,
+          "event": "inspect_images",
+          "title": "Inspect the action sequence",
+          "reasoning": "I've extracted frames from the 550-590 second window. Now I need to inspect these frames to see if they show fries being scooped with a metal skimmer into a holding trough.",
+          "media": [
+            "motion-evolved-009",
+            "motion-evolved-010",
+            "motion-evolved-011",
+            "motion-evolved-012",
+            "motion-evolved-013",
+            "motion-evolved-014",
+            "motion-evolved-015",
+            "motion-evolved-016",
+            "motion-evolved-017",
+            "motion-evolved-018",
+            "motion-evolved-019",
+            "motion-evolved-020",
+            "motion-evolved-021",
+            "motion-evolved-022",
+            "motion-evolved-023",
+            "motion-evolved-024",
+            "motion-evolved-025",
+            "motion-evolved-026",
+            "motion-evolved-027",
+            "motion-evolved-028",
+            "motion-evolved-029"
+          ],
+          "parameters": {},
+          "focus": "Look for the specific action of fries being scooped with a metal skimmer into a holding trough. I need to see: 1) A metal skimmer (flat mesh tool), 2) Fries being scooped, 3) The fries being transferred into a holding trough or container. Identify which frames show this action and note the exact timestamps.",
+          "tool": "inspect_images",
+          "phase": "observe",
+          "summary": "I've extracted frames from the 550-590 second window. Now I need to inspect these frames to see if they show fries being scooped with a metal skimmer into a holding trough."
+        },
+        {
+          "number": 6,
+          "recordIndex": 7,
+          "event": "tool_call",
+          "title": "Extract a 15-second clip",
+          "reasoning": "The frames show the action of fries being scooped with a metal skimmer. Let me analyze what I see:\n\n- 550s: Shows a kitchen scene with fries on a holding trough, a metal skimmer visible\n- 558s-562s: Shows fries being fried in oil with a metal skimmer\n- 570s-574s: Shows fries being scooped with a metal skimmer from the fryer\n- 576s: Shows the metal skimmer full of fries being lifted from the fryer\n- 578s: Shows the fries being poured from the skimmer into a holding trough\n- 580s-582s: Shows the fries in the holding trough\n\nThe key action of scooping fries with a metal skimmer and transferring them into a holding trough appears to happen around 574s-578s. The skimmer is used to scoop fries from the fryer (574s), lifted (576s), and then poured into the holding trough (578s).\n\nLet me extract a video clip to see the exact timing of this action more precisely.",
+          "media": [
+            "motion-evolved-030"
+          ],
+          "parameters": {
+            "start": 570,
+            "end": 585,
+            "fps": 6,
+            "width": 960
+          },
+          "focus": "",
+          "tool": "extract_video_clip",
+          "phase": "prepare",
+          "summary": "Prepare a 15-second video observation over 570–585 s."
+        },
+        {
+          "number": 7,
+          "recordIndex": 8,
+          "event": "inspect_video",
+          "title": "Verify the motion",
+          "reasoning": "Watch for the specific action of fries being scooped with a metal skimmer and transferred into a holding trough. I need to see: 1) A metal skimmer (flat mesh tool) scooping fries from hot oil, 2) The fries being lifted and transferred, 3) The fries being deposited into a holding trough. Report the exact start and end times (in source-video seconds) when this scooping and transferring action occurs.",
+          "media": [
+            "motion-evolved-030"
+          ],
+          "parameters": {},
+          "focus": "Watch for the specific action of fries being scooped with a metal skimmer and transferred into a holding trough. I need to see: 1) A metal skimmer (flat mesh tool) scooping fries from hot oil, 2) The fries being lifted and transferred, 3) The fries being deposited into a holding trough. Report the exact start and end times (in source-video seconds) when this scooping and transferring action occurs.",
+          "tool": "inspect_video",
+          "phase": "observe",
+          "summary": "Watch for the specific action of fries being scooped with a metal skimmer and transferred into a holding trough. I need to see: 1) A metal skimmer (flat mesh tool) scooping fries from hot oil, 2) The fries being lifted and transferred, 3) The fries being deposited into a holding trough. Report the exact start and end times (in source-video seconds) when this scooping and transferring action occurs."
+        },
+        {
+          "number": 8,
+          "recordIndex": 9,
+          "event": "final_answer",
+          "title": "Return the predicted interval",
+          "reasoning": "The video clearly shows the action of fries being scooped with a metal skimmer and transferred into a holding trough. Let me analyze the timing:\n\nFrom the video clip (which covers source-video seconds 570-585):\n- At the beginning (around 570s), we see fries frying in hot oil with a metal skimmer\n- The skimmer scoops up the fries from the oil\n- Around 576-578s, the skimmer lifts the fries out of the oil\n- At 578s, the fries are being poured/transferred into a metal holding trough\n- By 580-582s, the fries are in the holding trough\n\nLooking at the frames I inspected earlier:\n- Frame at 576.000s shows the skimmer with fries lifted above the fryer\n- Frame at 578.000s shows the fries being poured into the holding trough\n- Frame at 580.000s shows the fries already in the trough\n\nThe action of scooping and transferring appears to start around 570-572 seconds when the skimmer begins gathering the fries, and ends around 580-582 seconds when the fries are deposited in the trough.\n\nLet me be more precise based on the video observation:\n- The scooping action starts when the skimmer begins to gather fries from the oil (around 570-572s)\n- The transfer to the trough happens around 576-578s\n- The action completes when the fries are deposited in the trough (around 580-582s)\n\nBased on the video evidence, the complete action of scooping fries with a metal skimmer and transferring them into a holding trough occurs from approximately 570 seconds to 582 seconds.",
+          "media": [],
+          "parameters": {},
+          "focus": "",
+          "phase": "answer",
+          "tool": "final_answer",
+          "answer": "The event happens in 570 - 582 seconds.",
+          "summary": "Video shows metal skimmer scooping fries from hot oil (570-576s), lifting them, and transferring into metal holding trough (576-582s). The complete scooping and depositing action is clearly visible."
+        }
+      ],
+      "media": [
+        {
+          "id": "motion-evolved-001",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-001.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-001-thumb.webp",
+          "kind": "image",
+          "start": 0.0,
+          "end": 379.823,
+          "frameCount": 24,
+          "sheet": 1,
+          "caption": "Sheet 1 · 0–379.823 s"
+        },
+        {
+          "id": "motion-evolved-002",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-002.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-002-thumb.webp",
+          "kind": "image",
+          "start": 379.823,
+          "end": 759.646,
+          "frameCount": 24,
+          "sheet": 2,
+          "caption": "Sheet 2 · 379.823–759.646 s"
+        },
+        {
+          "id": "motion-evolved-003",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-003.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-003-thumb.webp",
+          "kind": "image",
+          "start": 759.646,
+          "end": 1139.47,
+          "frameCount": 24,
+          "sheet": 3,
+          "caption": "Sheet 3 · 759.646–1139.47 s"
+        },
+        {
+          "id": "motion-evolved-004",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-004.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-004-thumb.webp",
+          "kind": "image",
+          "start": 1139.47,
+          "end": 1519.293,
+          "frameCount": 24,
+          "sheet": 4,
+          "caption": "Sheet 4 · 1139.47–1519.29 s"
+        },
+        {
+          "id": "motion-evolved-005",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-005.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-005-thumb.webp",
+          "kind": "image",
+          "start": 1519.293,
+          "end": 1899.116,
+          "frameCount": 24,
+          "sheet": 5,
+          "caption": "Sheet 5 · 1519.29–1899.12 s"
+        },
+        {
+          "id": "motion-evolved-006",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-006.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-006-thumb.webp",
+          "kind": "image",
+          "start": 1899.116,
+          "end": 2278.939,
+          "frameCount": 24,
+          "sheet": 6,
+          "caption": "Sheet 6 · 1899.12–2278.94 s"
+        },
+        {
+          "id": "motion-evolved-007",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-007.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-007-thumb.webp",
+          "kind": "image",
+          "start": 2278.939,
+          "end": 2658.763,
+          "frameCount": 24,
+          "sheet": 7,
+          "caption": "Sheet 7 · 2278.94–2658.76 s"
+        },
+        {
+          "id": "motion-evolved-008",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-008.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-008-thumb.webp",
+          "kind": "image",
+          "start": 2658.763,
+          "end": 3038.586,
+          "frameCount": 24,
+          "sheet": 8,
+          "caption": "Sheet 8 · 2658.76–3038.59 s"
+        },
+        {
+          "id": "motion-evolved-009",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-009.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-009-thumb.webp",
+          "kind": "image",
+          "time": 550.0,
+          "caption": "550 s"
+        },
+        {
+          "id": "motion-evolved-010",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-010.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-010-thumb.webp",
+          "kind": "image",
+          "time": 552.0,
+          "caption": "552 s"
+        },
+        {
+          "id": "motion-evolved-011",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-011.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-011-thumb.webp",
+          "kind": "image",
+          "time": 554.0,
+          "caption": "554 s"
+        },
+        {
+          "id": "motion-evolved-012",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-012.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-012-thumb.webp",
+          "kind": "image",
+          "time": 556.0,
+          "caption": "556 s"
+        },
+        {
+          "id": "motion-evolved-013",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-013.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-013-thumb.webp",
+          "kind": "image",
+          "time": 558.0,
+          "caption": "558 s"
+        },
+        {
+          "id": "motion-evolved-014",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-014.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-014-thumb.webp",
+          "kind": "image",
+          "time": 560.0,
+          "caption": "560 s"
+        },
+        {
+          "id": "motion-evolved-015",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-015.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-015-thumb.webp",
+          "kind": "image",
+          "time": 562.0,
+          "caption": "562 s"
+        },
+        {
+          "id": "motion-evolved-016",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-016.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-016-thumb.webp",
+          "kind": "image",
+          "time": 564.0,
+          "caption": "564 s"
+        },
+        {
+          "id": "motion-evolved-017",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-017.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-017-thumb.webp",
+          "kind": "image",
+          "time": 566.0,
+          "caption": "566 s"
+        },
+        {
+          "id": "motion-evolved-018",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-018.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-018-thumb.webp",
+          "kind": "image",
+          "time": 568.0,
+          "caption": "568 s"
+        },
+        {
+          "id": "motion-evolved-019",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-019.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-019-thumb.webp",
+          "kind": "image",
+          "time": 570.0,
+          "caption": "570 s"
+        },
+        {
+          "id": "motion-evolved-020",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-020.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-020-thumb.webp",
+          "kind": "image",
+          "time": 572.0,
+          "caption": "572 s"
+        },
+        {
+          "id": "motion-evolved-021",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-021.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-021-thumb.webp",
+          "kind": "image",
+          "time": 574.0,
+          "caption": "574 s"
+        },
+        {
+          "id": "motion-evolved-022",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-022.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-022-thumb.webp",
+          "kind": "image",
+          "time": 576.0,
+          "caption": "576 s"
+        },
+        {
+          "id": "motion-evolved-023",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-023.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-023-thumb.webp",
+          "kind": "image",
+          "time": 578.0,
+          "caption": "578 s"
+        },
+        {
+          "id": "motion-evolved-024",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-024.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-024-thumb.webp",
+          "kind": "image",
+          "time": 580.0,
+          "caption": "580 s"
+        },
+        {
+          "id": "motion-evolved-025",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-025.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-025-thumb.webp",
+          "kind": "image",
+          "time": 582.0,
+          "caption": "582 s"
+        },
+        {
+          "id": "motion-evolved-026",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-026.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-026-thumb.webp",
+          "kind": "image",
+          "time": 584.0,
+          "caption": "584 s"
+        },
+        {
+          "id": "motion-evolved-027",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-027.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-027-thumb.webp",
+          "kind": "image",
+          "time": 586.0,
+          "caption": "586 s"
+        },
+        {
+          "id": "motion-evolved-028",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-028.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-028-thumb.webp",
+          "kind": "image",
+          "time": 588.0,
+          "caption": "588 s"
+        },
+        {
+          "id": "motion-evolved-029",
+          "src": "assets/images/cases/motion/evolved/motion-evolved-029.jpg",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-029-thumb.webp",
+          "kind": "image",
+          "time": 590.0,
+          "caption": "590 s"
+        },
+        {
+          "id": "motion-evolved-030",
+          "src": "assets/videos/cases/motion/evolved/motion-evolved-030.mp4",
+          "thumb": "assets/images/cases/motion/evolved/motion-evolved-030-thumb.webp",
+          "kind": "video",
+          "start": 570.0,
+          "end": 585.0,
+          "caption": "570–585 s"
+        }
+      ]
+    }
+  },
+  "figure": "assets/images/figures/case-motion.webp",
+  "poster": "assets/images/cases/motion/cover.webp",
+  "insight": "This trajectory illustrates how better candidate localization allows video observation to focus on verifying query-specific motion, reducing repeated inspection of an incorrect region.",
+  "reduction": 51.27
+}

@@ -1,0 +1,96 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="480"
+  height="220"
+  viewBox="0 0 480 220"
+  role="img"
+  aria-label="CoEvoWhen: Policy-Tool Coevolution for Ultra-Long Video Temporal Grounding"
+>
+  <title>
+    CoEvoWhen: Policy-Tool Coevolution for Ultra-Long Video Temporal Grounding
+  </title>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop stop-color="#f0edf8" />
+      <stop offset="1" stop-color="#eaf5f2" />
+    </linearGradient>
+  </defs>
+  <rect width="480" height="220" rx="18" fill="url(#bg)" />
+  <g fill="none" stroke="#b9b0d2" opacity=".22">
+    <circle cx="470" cy="5" r="100" />
+    <circle cx="470" cy="5" r="145" />
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="240" y="37" font-size="12" letter-spacing="1.6" fill="#6552a3">
+      POLICIES AND TOOLS, EVOLVED TOGETHER
+    </text>
+    <g aria-label="CoEvoWhen">
+      <svg
+        x="53.12"
+        y="60.50"
+        width="50"
+        height="50"
+        viewBox="0 0 64 64"
+        fill="none"
+      >
+        <rect width="64" height="64" rx="18" fill="#f0ecf8" />
+        <path
+          d="M14 23c3-9 12-13 21-10 4 1 7 4 9 7"
+          stroke="#6552a3"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+        <path
+          d="m44 12 1 10-10-1"
+          stroke="#6552a3"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M50 41c-3 9-12 13-21 10-4-1-7-4-9-7"
+          stroke="#237f79"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+        <path
+          d="m20 52-1-10 10 1"
+          stroke="#237f79"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M14 32h36"
+          stroke="#b9b2cd"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <rect x="27" y="26" width="13" height="12" rx="3" fill="#6552a3" />
+        <path
+          d="M19 29v6m27-6v6"
+          stroke="#237f79"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+      <text
+        x="115.12"
+        y="105"
+        text-anchor="start"
+        fill="#6552a3"
+        font-size="56"
+        font-weight="700"
+        letter-spacing="-2"
+      >
+        CoEvoWhen
+      </text>
+    </g>
+    <text x="240" y="150" font-size="23" font-weight="600" fill="#242137">
+      Policy-Tool Coevolution for
+    </text>
+    <text x="240" y="182" font-size="23" font-weight="600" fill="#242137">
+      Ultra-Long Video Temporal Grounding
+    </text>
+  </g>
+</svg>

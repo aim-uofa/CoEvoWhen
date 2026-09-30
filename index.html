@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#6552a3" />
+    <title>
+      CoEvoWhen: Policy-Tool Coevolution for Ultra-Long Video Temporal Grounding
+    </title>
+    <meta
+      name="description"
+      content="CoEvoWhen jointly evolves policies and executable media tools into reusable skills for more accurate and efficient temporal grounding in ultra-long videos."
+    />
+    <meta
+      property="og:title"
+      content="CoEvoWhen — Seeing less yet understanding more"
+    />
+    <meta
+      property="og:description"
+      content="Policy-tool coevolution for ultra-long video temporal grounding. Explore the method, results, and four complete execution trajectories."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://aim-uofa.github.io/CoEvoWhen/" />
+    <meta
+      property="og:image"
+      content="https://aim-uofa.github.io/CoEvoWhen/assets/images/social-preview.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://aim-uofa.github.io/CoEvoWhen/" />
+    <link rel="icon" href="assets/images/coevowhen-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/trajectories.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#abstract">Skip to content</a>
+    <svg
+      class="icon-definitions"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <symbol id="i-arrow" viewBox="0 0 24 24">
+          <path d="M5 12h14m-6-6 6 6-6 6" />
+        </symbol>
+        <symbol id="i-expand" viewBox="0 0 24 24">
+          <path
+            d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M3 3l6 6m12-6-6 6M3 21l6-6m12 6-6-6"
+          />
+        </symbol>
+        <symbol id="i-paper" viewBox="0 0 24 24">
+          <path d="M14 3H5v18h14V8zM14 3v5h5M8 12h8m-8 4h6" />
+        </symbol>
+        <symbol id="i-github" viewBox="0 0 24 24">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.285 0 .315.21.69.825.57C20.565 21.795 24 17.31 24 12c0-6.63-5.37-12-12-12z"
+          />
+        </symbol>
+        <symbol id="i-play" viewBox="0 0 24 24">
+          <path d="m8 4 12 8-12 8z" />
+        </symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24">
+          <rect x="8" y="8" width="12" height="13" rx="2" />
+          <path d="M15 8V3H3v12h5" />
+        </symbol>
+        <symbol id="i-cycle" viewBox="0 0 24 24">
+          <path
+            d="M20 8a8 8 0 0 0-14-3L3 8m0-5v5h5M4 16a8 8 0 0 0 14 3l3-3m0 5v-5h-5"
+          />
+        </symbol>
+        <symbol id="i-image" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="3" />
+          <circle cx="8" cy="8" r="1.5" />
+          <path d="m3 17 5-5 4 4 4-7 5 8" />
+        </symbol>
+        <symbol id="i-chart" viewBox="0 0 24 24">
+          <path d="M4 3v18h18M8 16v-4m5 4V8m5 8V4" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <header class="site-header">
+      <div class="nav-shell">
+        <a href="#top" class="wordmark"
+          ><img
+            src="assets/images/coevowhen-mark.svg"
+            width="31"
+            height="31"
+            alt=""
+          />CoEvoWhen</a
+        >
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="main-nav"
+          aria-label="Open navigation"
+        >
+          <span></span><span></span>
+        </button>
+        <nav id="main-nav" aria-label="Main navigation">
+          <a href="#abstract">Abstract</a><a href="#method">Method</a
+          ><a href="#results">Results</a><a href="#analysis">Analysis</a
+          ><a href="#case-study">Case Study</a>
+        </nav>
+      </div>
+      <div class="reading-progress" aria-hidden="true"></div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-orbit" aria-hidden="true"></div>
+        <div class="container hero-content">
+          <p class="eyebrow hero-keywords">
+            <span class="keyword">SELF-EVOLUTION</span>
+            <span class="keyword-separator" aria-hidden="true">·</span>
+            <span class="keyword">LONG-VIDEO TEMPORAL GROUNDING</span>
+            <span class="keyword-separator" aria-hidden="true">·</span>
+            <span class="keyword">MULTIMODAL AGENTS</span>
+          </p>
+          <div class="hero-name">
+            <img
+              src="assets/images/coevowhen-mark.svg"
+              alt=""
+              width="76"
+              height="76"
+            /><span>CoEvoWhen</span>
+          </div>
+          <h1>
+            Policy-Tool Coevolution for<br class="desktop-break" />
+            Ultra-Long Video Temporal Grounding
+          </h1>
+          <div class="authors" aria-label="Authors">
+            <span>Yiduo Jia</span><span>Muzhi Zhu</span><span>Jinchuan Shi</span
+            ><span>Hao Zhong</span><span>Yuling Xi</span><span>Ke Liu</span
+            ><span>Hao Chen<sup>†</sup></span>
+          </div>
+          <p class="affiliation">
+            Zhejiang University, State Key Lab of CAD &amp; CG
+          </p>
+          <p class="corresponding"><sup>†</sup> Corresponding author</p>
+          <div class="hero-actions">
+            <!-- Add the arXiv URL to the Paper link when available. -->
+            <a
+              class="button primary"
+              aria-disabled="true"
+              title="arXiv link to be added"
+              ><svg class="icon"><use href="#i-paper" /></svg>Paper</a
+            >
+            <a
+              class="button"
+              href="https://github.com/aim-uofa/CoEvoWhen"
+              target="_blank"
+              rel="noopener"
+              ><svg class="icon github-icon" aria-hidden="true">
+                <use href="#i-github" /></svg
+              >Code</a
+            >
+          </div>
+          <div class="hero-metrics">
+            <div>
+              <strong aria-label="74.9% relative mIoU improvement"
+                >+74.9<span>%</span></strong
+              ><span>mIoU improvement</span>
+            </div>
+            <div>
+              <strong class="green">−11.4<span>%</span></strong
+              ><span>Visual token cost reduction</span>
+            </div>
+            <div class="hero-scope">
+              <strong
+                >5 <span>benchmarks</span> <i>·</i> 3 <span>VLMs</span></strong
+              ><span>Ultra-long video temporal grounding and QA</span>
+            </div>
+          </div>
+          <p class="metric-context">
+            Qwen3.5-27B on ExtremeWhenBench, evolved skill vs. base skill.
+          </p>
+          <p class="hero-tagline">
+            <strong>Seeing Less</strong> yet <strong>Understanding More</strong>
+          </p>
+        </div>
+      </section>
+
+      <div class="container preview-pair">
+        <a
+          class="case-preview motion-preview"
+          href="#case-motion"
+          data-open-case="motion"
+        >
+          <img
+            src="assets/images/cases/motion/cover.webp"
+            alt="A metal skimmer lifts fries from a fryer"
+            width="900"
+            height="506"
+            fetchpriority="high"
+          />
+          <div class="preview-overlay">
+            <span class="preview-chip">50.6 MIN VIDEO</span
+            ><strong>Candidate Localization<br />and Motion Verification</strong
+            ><span
+              >View the trajectories
+              <svg class="icon"><use href="#i-arrow" /></svg
+            ></span>
+          </div>
+        </a>
+        <a
+          class="case-preview scene-preview"
+          href="#case-scene"
+          data-open-case="scene"
+        >
+          <img
+            src="assets/images/cases/scene/cover.webp"
+            alt="A couple walks along a tree-lined path in golden light"
+            width="900"
+            height="506"
+            fetchpriority="high"
+          />
+          <div class="preview-overlay">
+            <span class="preview-chip">100.1 MIN VIDEO</span
+            ><strong>Long-Range Search<br />and Boundary Refinement</strong
+            ><span
+              >View the trajectories
+              <svg class="icon"><use href="#i-arrow" /></svg
+            ></span>
+          </div>
+        </a>
+      </div>
+
+      <section id="abstract" class="section abstract-section">
+        <div class="reading-container">
+          <div class="section-heading centered paper-section-heading">
+            <h2>Abstract</h2>
+          </div>
+          <div class="abstract-text">
+            <p>
+              Ultra-long video temporal grounding requires balancing long-range
+              evidence search with fine-grained event understanding under a
+              limited visual budget, yet existing agentic methods still rely
+              largely on predefined policies and tool capabilities. Motivated by
+              this, we propose a
+              <strong class="abstract-policy"
+                >novel policy–tool coevolution framework</strong
+              >
+              that jointly evolves high-level policies and executable media
+              tools from the agentic reasoning trajectories of a VLM, forming a
+              reusable skill without updating model parameters.
+            </p>
+            <p>
+              During evolution, an external skill updater distills transferable
+              task experience in long-video temporal grounding, accordingly
+              refining the orchestration of
+              <strong class="abstract-observation"
+                >long-range image-based and fine-grained video-based
+                observations</strong
+              >. Alongside these policy updates, the updater employs its coding
+              capabilities to upgrade existing tools or create new ones,
+              adapting the tools to long-video evidence acquisition.
+            </p>
+            <p>
+              Equipped with the evolved skill, the VLM
+              <strong class="abstract-policy"
+                >autonomously orchestrates tools</strong
+              >
+              under the guidance of the evolved policy, coordinating image and
+              video observations for agentic inference without relying on a
+              separate, stronger planning model.
+            </p>
+            <p>
+              Extensive experiments spanning five benchmarks and three VLMs show
+              that policy–tool coevolution consistently
+              <strong class="abstract-accuracy"
+                >improves temporal grounding accuracy</strong
+              >
+              in ultra-long videos while
+              <strong class="abstract-efficiency"
+                >reducing visual token cost</strong
+              >
+              at inference, and that the evolved skill yields substantial
+              performance gains on general long-video QA without additional
+              task-specific evolution, demonstrating the effectiveness and
+              generalizability of our framework for long-video understanding.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="highlights container" aria-label="Research highlights">
+        <article class="highlight">
+          <span class="highlight-icon"
+            ><svg class="icon"><use href="#i-cycle" /></svg></span
+          ><span class="index-label">01 / COEVOLUTION</span>
+          <h3>Policy–Tool Coevolution</h3>
+          <p>
+            Distilling ultra-long video grounding experience into a reusable
+            external skill without updating model parameters.
+          </p>
+        </article>
+        <article class="highlight">
+          <span class="highlight-icon teal"
+            ><svg class="icon"><use href="#i-image" /></svg></span
+          ><span class="index-label">02 / OBSERVATION</span>
+          <h3>Coordinated Image–Video Observation</h3>
+          <p>
+            Enabling the VLM to acquire evidence autonomously without manually
+            predefined coordination strategies or a stronger external planner.
+          </p>
+        </article>
+        <article class="highlight">
+          <span class="highlight-icon blue"
+            ><svg class="icon"><use href="#i-chart" /></svg></span
+          ><span class="index-label">03 / GAINS</span>
+          <h3>Accuracy Gains and Cost Reduction</h3>
+          <p>
+            Improving grounding accuracy at lower visual token cost through
+            separate evolution on different VLMs. The evolved skill also
+            improves general long-video QA through direct transfer, without
+            additional task-specific evolution.
+          </p>
+        </article>
+      </section>
+
+      <section id="method" class="section tinted-section">
+        <div class="container">
+          <div class="section-heading centered paper-section-heading">
+            <h2>CoEvoWhen Framework</h2>
+            <p>
+              A policy–tool coevolution framework that distills task experience
+              into a reusable external skill for ultra-long video temporal
+              grounding.
+            </p>
+          </div>
+          <div class="concept-pair">
+            <div>
+              <span class="concept-tag policy">POLICIES</span>
+              <p>
+                What evidence is needed, when to acquire it, and how to organize
+                the search.
+              </p>
+            </div>
+            <span class="concept-link" aria-hidden="true">⇄</span>
+            <div>
+              <span class="concept-tag tool">TOOLS</span>
+              <p>
+                The form and granularity of the evidence the tools can present
+                to the model.
+              </p>
+            </div>
+          </div>
+          <section
+            id="method-evolution"
+            class="method-subsection"
+            aria-labelledby="method-evolution-heading"
+          >
+            <h3 id="method-evolution-heading">Policy–Tool Coevolution</h3>
+            <figure class="paper-figure">
+              <button
+                class="figure-zoom"
+                data-lightbox="assets/images/figures/framework.webp"
+                data-caption="Policy–tool coevolution framework for ultra-long video temporal grounding."
+                aria-label="Enlarge the coevolution framework"
+              >
+                <img
+                  src="assets/images/figures/framework.webp"
+                  alt="A frozen VLM executes grounding tasks; trajectories and task feedback guide an external updater to refine policies and synthesize media tools."
+                  loading="lazy"
+                  width="2400"
+                  height="1850"
+                /><span class="zoom-label"
+                  ><svg class="icon"><use href="#i-expand" /></svg>
+                  Enlarge</span
+                >
+              </button>
+            </figure>
+            <p class="method-description">
+              A frozen VLM executes ultra-long video temporal grounding tasks
+              with an external skill comprising high-level policies and
+              executable media tools. Across evolution rounds, an external skill
+              updater distills transferable experience from execution
+              trajectories and task feedback, refining policies for task
+              planning and observation orchestration while synthesizing code to
+              modify existing media tools or create new ones.
+            </p>
+          </section>
+          <section
+            id="method-inference"
+            class="method-subsection"
+            aria-labelledby="method-inference-heading"
+          >
+            <h3 id="method-inference-heading">
+              Policy-Guided Agentic Inference
+            </h3>
+            <figure class="paper-figure">
+              <button
+                class="figure-zoom"
+                data-lightbox="assets/images/figures/inference.webp"
+                data-caption="Policy-guided agentic inference with the evolved skill."
+                aria-label="Enlarge the inference diagram"
+              >
+                <img
+                  src="assets/images/figures/inference.webp"
+                  alt="The evolved skill coordinates global image search, candidate refinement, and selective video verification across inference rounds."
+                  loading="lazy"
+                  width="2400"
+                  height="910"
+                /><span class="zoom-label"
+                  ><svg class="icon"><use href="#i-expand" /></svg>
+                  Enlarge</span
+                >
+              </button>
+            </figure>
+            <p class="method-description">
+              Image-based observations can provide compact coverage of extended
+              temporal ranges and facilitate comparisons across distant
+              candidate regions, whereas video-based observations preserve local
+              temporal continuity for reasoning about motion, event order, and
+              temporal boundaries.
+            </p>
+            <p class="method-description">
+              At inference, the VLM autonomously orchestrates media tools under
+              the guidance of the evolved policy, using accumulated evidence to
+              decide on subsequent observations without relying on a separate,
+              stronger planning model.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <section id="results" class="section">
+        <div class="container wide-container">
+          <div class="section-heading centered paper-section-heading">
+            <h2>Quantitative Results</h2>
+            <p>
+              Coevolution improves grounding accuracy while simultaneously
+              reducing visual token cost. Consistent gains are also observed
+              when skills are evolved separately on different VLMs. Directly
+              applying the evolved skill to general long-video QA also improves
+              performance without additional task-specific evolution.
+            </p>
+          </div>
+          <div
+            class="tabs"
+            role="tablist"
+            aria-label="Experimental results"
+            data-tabs="results"
+          >
+            <button
+              id="result-grounding-tab"
+              role="tab"
+              aria-selected="true"
+              aria-controls="result-grounding"
+              data-panel="result-grounding"
+            >
+              Temporal Grounding</button
+            ><button
+              id="result-efficiency-tab"
+              role="tab"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="result-efficiency"
+              data-panel="result-efficiency"
+            >
+              Inference Efficiency</button
+            ><button
+              id="result-transfer-tab"
+              role="tab"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="result-transfer"
+              data-panel="result-transfer"
+            >
+              Generalization &amp; Transfer
+            </button>
+            <button
+              id="result-more-tab"
+              role="tab"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="result-more"
+              data-panel="result-more"
+            >
+              More Results
+            </button>
+          </div>
+          <div
+            id="result-grounding"
+            role="tabpanel"
+            aria-labelledby="result-grounding-tab"
+          >
+            <div id="grounding-content" aria-live="polite">
+              <p>Loading quantitative results…</p>
+              <noscript>Enable JavaScript to view the results.</noscript>
+            </div>
+          </div>
+          <div
+            id="result-efficiency"
+            role="tabpanel"
+            aria-labelledby="result-efficiency-tab"
+            hidden
+          >
+            <div id="efficiency-content"></div>
+          </div>
+          <div
+            id="result-transfer"
+            role="tabpanel"
+            aria-labelledby="result-transfer-tab"
+            hidden
+          >
+            <div id="transfer-content"></div>
+          </div>
+          <div
+            id="result-more"
+            role="tabpanel"
+            aria-labelledby="result-more-tab"
+            hidden
+          >
+            <div id="more-dimensions-content"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="analysis" class="section">
+        <div class="container">
+          <div class="section-heading centered paper-section-heading">
+            <h2>Ablations &amp; Analysis</h2>
+          </div>
+          <div
+            class="tabs"
+            role="tablist"
+            aria-label="Ablations &amp; analysis"
+            data-tabs="analysis"
+          >
+            <button
+              id="analysis-policy-tab"
+              role="tab"
+              aria-selected="true"
+              aria-controls="analysis-policy"
+              data-panel="analysis-policy"
+            >
+              Ablation on Policy–Tool Coevolution
+            </button>
+            <button
+              id="analysis-modality-tab"
+              role="tab"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="analysis-modality"
+              data-panel="analysis-modality"
+            >
+              Ablation on Image–Video Coordination
+            </button>
+            <button
+              id="analysis-evolution-tab"
+              role="tab"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="analysis-evolution"
+              data-panel="analysis-evolution"
+            >
+              Analysis of Skill Evolution
+            </button>
+          </div>
+          <section
+            id="analysis-policy"
+            class="analysis-subsection"
+            role="tabpanel"
+            aria-labelledby="analysis-policy-tab"
+          >
+            <div class="analysis-split">
+              <figure class="paper-figure">
+                <button
+                  class="figure-zoom"
+                  data-lightbox="assets/images/figures/policy-tool-ablation.webp"
+                  data-caption="Ablation on policy–tool coevolution."
+                  aria-label="Enlarge the policy–tool ablation"
+                >
+                  <img
+                    src="assets/images/figures/policy-tool-ablation.webp"
+                    width="2400"
+                    height="1967"
+                    alt="Joint evolution offers the best grounding accuracy and visual token cost compared with base, policy-only, and tool-only variants."
+                    loading="lazy"
+                  /><span class="zoom-label"
+                    ><svg class="icon"><use href="#i-expand" /></svg
+                  ></span>
+                </button>
+              </figure>
+              <div class="analysis-copy">
+                <h3>
+                  Joint evolution achieves the best accuracy–cost combination.
+                </h3>
+                <p>
+                  Policy-only and tool-only variants both improve grounding
+                  accuracy over the base skill, confirming policies and tools as
+                  effective evolution targets.
+                </p>
+                <p>
+                  More efficient evidence acquisition from ultra-long videos
+                  relies on both executable media tools to expand the available
+                  observation capabilities and high-level policies to select and
+                  orchestrate them.
+                </p>
+                <div class="ablation-stats">
+                  <div class="accuracy-stat">
+                    <strong>↑ 5.0%</strong
+                    ><span>higher IoU AUC<br />than policy-only</span>
+                  </div>
+                  <div>
+                    <strong>↓ 40.6%</strong
+                    ><span>fewer visual tokens<br />than policy-only</span>
+                  </div>
+                  <div class="accuracy-stat">
+                    <strong>↑ 16.7%</strong
+                    ><span>higher IoU AUC<br />than tool-only</span>
+                  </div>
+                  <div>
+                    <strong>↓ 25.5%</strong
+                    ><span>fewer visual tokens<br />than tool-only</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section
+            id="analysis-modality"
+            class="analysis-subsection"
+            role="tabpanel"
+            aria-labelledby="analysis-modality-tab"
+            hidden
+          >
+            <div id="modality-content"></div>
+            <p class="analysis-description">
+              Both single-modality variants improve grounding performance
+              through evolution, and image–video coordination yields further
+              benefits: the evolved image+video skill outperforms both
+              single-modality skills across all grounding metrics while using
+              fewer visual tokens. These empirical results underscore that
+              image-based and video-based observations are suited to different
+              contexts in ultra-long video temporal grounding, and that
+              strategically coordinating the two makes better use of their
+              complementary strengths, achieving accuracy gains and cost
+              reductions in tandem.
+            </p>
+          </section>
+          <section
+            id="analysis-evolution"
+            class="analysis-subsection"
+            role="tabpanel"
+            aria-labelledby="analysis-evolution-tab"
+            hidden
+          >
+            <div class="evolution-layout">
+              <figure class="paper-figure">
+                <button
+                  class="figure-zoom"
+                  data-lightbox="assets/images/figures/evolution-dynamics.webp"
+                  data-caption="Online performance–cost dynamics during skill evolution."
+                  aria-label="Enlarge the evolution dynamics"
+                >
+                  <img
+                    src="assets/images/figures/evolution-dynamics.webp"
+                    width="2400"
+                    height="1867"
+                    alt="Grounding accuracy and visual token cost evolve across task executions."
+                    loading="lazy"
+                  /><span class="zoom-label"
+                    ><svg class="icon"><use href="#i-expand" /></svg
+                  ></span>
+                </button>
+              </figure>
+              <figure class="paper-figure">
+                <button
+                  class="figure-zoom"
+                  data-lightbox="assets/images/figures/skill-evolution.webp"
+                  data-caption="Coevolution of high-level policies and executable media tools."
+                  aria-label="Enlarge the skill evolution diagram"
+                >
+                  <img
+                    src="assets/images/figures/skill-evolution.webp"
+                    width="2400"
+                    height="1235"
+                    alt="Trajectory signals drive corresponding policy and tool updates, developing global coverage, local refinement, and dynamic verification."
+                    loading="lazy"
+                  /><span class="zoom-label"
+                    ><svg class="icon"><use href="#i-expand" /></svg
+                  ></span>
+                </button>
+              </figure>
+            </div>
+            <p class="analysis-description">
+              As evolution proceeds, the skill achieves higher grounding
+              accuracy with lower visual token cost more consistently. Candidate
+              omissions, boundary errors, and dynamic ambiguities exposed in
+              trajectories drive coordinated adjustments to observation
+              capabilities and their orchestration. Together, these advances
+              suggest that policy–tool coevolution distills execution feedback
+              into mutually adapted observation capabilities and policies,
+              letting the VLM allocate its visual budget according to evidence
+              needs for more accurate yet cheaper grounding.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <section id="case-study" class="section case-section">
+        <div class="container wide-container">
+          <div class="section-heading centered paper-section-heading">
+            <h2>Case Study</h2>
+            <p>
+              We analyze the execution trajectories of the base and evolved
+              skills on two ExtremeWhenBench queries to illustrate how
+              policy–tool coevolution changes evidence acquisition for action
+              and scene localization in ultra-long videos.
+            </p>
+          </div>
+          <div class="case-selector" role="tablist" aria-label="Case study">
+            <button
+              id="case-motion-tab"
+              role="tab"
+              aria-selected="true"
+              aria-controls="case-content"
+              data-case="motion"
+            >
+              <img
+                src="assets/images/cases/motion/cover.webp"
+                alt=""
+                loading="lazy"
+              /><span
+                ><small>CASE 01 · ACTION</small
+                ><strong
+                  >Candidate Localization and Motion Verification</strong
+                ></span
+              >
+            </button>
+            <button
+              id="case-scene-tab"
+              role="tab"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="case-content"
+              data-case="scene"
+            >
+              <img
+                src="assets/images/cases/scene/cover.webp"
+                alt=""
+                loading="lazy"
+              /><span
+                ><small>CASE 02 · SCENE</small
+                ><strong
+                  >Long-Range Search and Boundary Refinement</strong
+                ></span
+              >
+            </button>
+          </div>
+          <div
+            id="case-content"
+            role="tabpanel"
+            aria-labelledby="case-motion-tab"
+          >
+            <p class="load-message">Loading the recorded trajectories…</p>
+          </div>
+          <noscript
+            ><p>
+              Enable JavaScript to explore the recorded trajectories.
+            </p></noscript
+          >
+        </div>
+      </section>
+
+      <section id="citation" class="section citation-section">
+        <div class="reading-container">
+          <div class="section-heading">
+            <h2>Citation</h2>
+          </div>
+          <div class="citation-wrap">
+            <button class="copy-button" id="copy-citation" disabled>
+              <svg class="icon"><use href="#i-copy" /></svg>
+              <span>Copy BibTeX</span>
+            </button>
+            <!-- Add the arXiv BibTeX entry after release. -->
+            <pre><code id="bibtex"></code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <a class="wordmark" href="#top"
+          ><img
+            src="assets/images/coevowhen-mark.svg"
+            alt=""
+            width="27"
+            height="27"
+          />CoEvoWhen</a
+        >
+        <p>Zhejiang University · State Key Lab of CAD &amp; CG</p>
+      </div>
+    </footer>
+    <div id="toast" role="status" aria-live="polite"></div>
+
+    <dialog
+      id="media-dialog"
+      class="media-dialog"
+      aria-label="Expanded visual evidence"
+    >
+      <div class="dialog-toolbar">
+        <span id="dialog-caption"></span>
+        <div>
+          <button id="media-prev" aria-label="Previous image">←</button
+          ><span id="media-count"></span
+          ><button id="media-next" aria-label="Next image">→</button
+          ><button id="media-zoom" aria-label="Toggle original image size">
+            Zoom</button
+          ><a id="media-original" target="_blank" rel="noopener"
+            >Open original ↗</a
+          ><button id="media-close" aria-label="Close viewer">✕</button>
+        </div>
+      </div>
+      <div id="dialog-media" class="dialog-media"></div>
+    </dialog>
+  </body>
+</html>

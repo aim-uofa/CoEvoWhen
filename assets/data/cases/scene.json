@@ -1,0 +1,1697 @@
+{
+  "id": "scene",
+  "title": "Long-Range Search and Boundary Refinement",
+  "subtitle": "Finding an 11-second scene in a 100.1-minute video",
+  "query": "When do a couple walk down a tree-lined path framed by golden light?",
+  "duration": 6005.2,
+  "benchmark": "ExtremeWhenBench",
+  "groundTruth": [
+    5703.0,
+    5714.0
+  ],
+  "model": "Qwen3.5-27B",
+  "variants": {
+    "base": {
+      "name": "Base Skill",
+      "metrics": {
+        "prediction": [
+          1868.0,
+          1915.0
+        ],
+        "iou": 0.0,
+        "cumulative_visual_tokens": 237600,
+        "cumulative_image_tokens": 226800,
+        "cumulative_video_tokens": 10800,
+        "model_calls": 18,
+        "local_tool_calls": 9,
+        "image_observations": 7,
+        "video_observations": 1
+      },
+      "steps": [
+        {
+          "number": 1,
+          "recordIndex": 2,
+          "event": "tool_call",
+          "title": "Establish the search horizon",
+          "reasoning": "I need to find a specific event in a 6005-second video: \"a couple walk down a tree-lined path framed by golden light.\"\n\nThis is a long video, so I should start by getting metadata to understand the video structure, then strategically sample frames or extract clips to find this event.\n\nLet me start by getting the video metadata to understand its properties.",
+          "media": [],
+          "parameters": {},
+          "focus": "",
+          "tool": "probe_media",
+          "phase": "setup",
+          "summary": "The source video spans 6005.2 seconds."
+        },
+        {
+          "number": 2,
+          "recordIndex": 3,
+          "event": "tool_call",
+          "title": "Sample the full timeline",
+          "reasoning": "The video is 6005 seconds long. I need to find when a couple walks down a tree-lined path framed by golden light. This is a specific visual scene that I need to locate.\n\nLet me start by sampling some frames at different points in the video to get a sense of the content and find the relevant scene. I'll sample at various intervals to narrow down where this event might occur.",
+          "media": [
+            "scene-base-001",
+            "scene-base-002",
+            "scene-base-003",
+            "scene-base-004",
+            "scene-base-005",
+            "scene-base-006",
+            "scene-base-007",
+            "scene-base-008",
+            "scene-base-009",
+            "scene-base-010",
+            "scene-base-011",
+            "scene-base-012"
+          ],
+          "parameters": {
+            "timestamps": [
+              100,
+              500,
+              1000,
+              1500,
+              2000,
+              2500,
+              3000,
+              3500,
+              4000,
+              4500,
+              5000,
+              5500
+            ],
+            "width": 640
+          },
+          "focus": "",
+          "tool": "extract_frames_at",
+          "phase": "prepare",
+          "summary": "Extract 12 timestamped frames for the next observation."
+        },
+        {
+          "number": 3,
+          "recordIndex": 4,
+          "event": "inspect_images",
+          "title": "Inspect the first frame batch",
+          "reasoning": "Now let me inspect these sample frames to see if any of them show a couple walking down a tree-lined path with golden light.",
+          "media": [
+            "scene-base-001",
+            "scene-base-002",
+            "scene-base-003",
+            "scene-base-004",
+            "scene-base-005",
+            "scene-base-006",
+            "scene-base-007",
+            "scene-base-008",
+            "scene-base-009",
+            "scene-base-010",
+            "scene-base-011",
+            "scene-base-012"
+          ],
+          "parameters": {},
+          "focus": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene.",
+          "tool": "inspect_images",
+          "phase": "observe",
+          "summary": "Now let me inspect these sample frames to see if any of them show a couple walking down a tree-lined path with golden light."
+        },
+        {
+          "number": 4,
+          "recordIndex": 5,
+          "event": "tool_call",
+          "title": "Sample 50–1400 s",
+          "reasoning": "None of the sampled frames show a couple walking down a tree-lined path with golden light. The frames show various indoor scenes, a gym scene, flags, and other content, but not the specific scene I'm looking for.\n\nI need to sample more frames at different intervals to find this scene. Let me try sampling at more granular intervals, particularly in areas I haven't covered yet. Let me try some earlier timestamps and also some between the sampled points.",
+          "media": [
+            "scene-base-013",
+            "scene-base-014",
+            "scene-base-015",
+            "scene-base-016",
+            "scene-base-017",
+            "scene-base-018",
+            "scene-base-019",
+            "scene-base-020",
+            "scene-base-021",
+            "scene-base-022",
+            "scene-base-023",
+            "scene-base-024"
+          ],
+          "parameters": {
+            "timestamps": [
+              50,
+              200,
+              300,
+              400,
+              600,
+              700,
+              800,
+              900,
+              1100,
+              1200,
+              1300,
+              1400
+            ],
+            "width": 640
+          },
+          "focus": "",
+          "tool": "extract_frames_at",
+          "phase": "prepare",
+          "summary": "Extract 12 timestamped frames for the next observation."
+        },
+        {
+          "number": 5,
+          "recordIndex": 6,
+          "event": "inspect_images",
+          "title": "Inspect the second frame batch",
+          "reasoning": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene.",
+          "media": [
+            "scene-base-013",
+            "scene-base-014",
+            "scene-base-015",
+            "scene-base-016",
+            "scene-base-017",
+            "scene-base-018",
+            "scene-base-019",
+            "scene-base-020",
+            "scene-base-021",
+            "scene-base-022",
+            "scene-base-023",
+            "scene-base-024"
+          ],
+          "parameters": {},
+          "focus": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene.",
+          "tool": "inspect_images",
+          "phase": "observe",
+          "summary": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene."
+        },
+        {
+          "number": 6,
+          "recordIndex": 7,
+          "event": "tool_call",
+          "title": "Sample 1600–2900 s",
+          "reasoning": "None of the frames I've seen so far show a couple walking down a tree-lined path with golden light. Let me continue sampling more frames to find this scene. I should check more time intervals, particularly looking for outdoor scenes with trees and golden lighting.",
+          "media": [
+            "scene-base-025",
+            "scene-base-026",
+            "scene-base-027",
+            "scene-base-028",
+            "scene-base-029",
+            "scene-base-030",
+            "scene-base-031",
+            "scene-base-032",
+            "scene-base-033",
+            "scene-base-034",
+            "scene-base-035",
+            "scene-base-036"
+          ],
+          "parameters": {
+            "timestamps": [
+              1600,
+              1700,
+              1800,
+              1900,
+              2100,
+              2200,
+              2300,
+              2400,
+              2600,
+              2700,
+              2800,
+              2900
+            ],
+            "width": 640
+          },
+          "focus": "",
+          "tool": "extract_frames_at",
+          "phase": "prepare",
+          "summary": "Extract 12 timestamped frames for the next observation."
+        },
+        {
+          "number": 7,
+          "recordIndex": 8,
+          "event": "inspect_images",
+          "title": "Inspect the third frame batch",
+          "reasoning": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene.",
+          "media": [
+            "scene-base-025",
+            "scene-base-026",
+            "scene-base-027",
+            "scene-base-028",
+            "scene-base-029",
+            "scene-base-030",
+            "scene-base-031",
+            "scene-base-032",
+            "scene-base-033",
+            "scene-base-034",
+            "scene-base-035",
+            "scene-base-036"
+          ],
+          "parameters": {},
+          "focus": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene.",
+          "tool": "inspect_images",
+          "phase": "observe",
+          "summary": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene."
+        },
+        {
+          "number": 8,
+          "recordIndex": 9,
+          "event": "tool_call",
+          "title": "Sample 3100–4400 s",
+          "reasoning": "I haven't found the scene yet. Let me continue sampling more frames to find the couple walking down a tree-lined path with golden light. I'll check more time intervals.",
+          "media": [
+            "scene-base-037",
+            "scene-base-038",
+            "scene-base-039",
+            "scene-base-040",
+            "scene-base-041",
+            "scene-base-042",
+            "scene-base-043",
+            "scene-base-044",
+            "scene-base-045",
+            "scene-base-046",
+            "scene-base-047",
+            "scene-base-048"
+          ],
+          "parameters": {
+            "timestamps": [
+              3100,
+              3200,
+              3300,
+              3400,
+              3600,
+              3700,
+              3800,
+              3900,
+              4100,
+              4200,
+              4300,
+              4400
+            ],
+            "width": 640
+          },
+          "focus": "",
+          "tool": "extract_frames_at",
+          "phase": "prepare",
+          "summary": "Extract 12 timestamped frames for the next observation."
+        },
+        {
+          "number": 9,
+          "recordIndex": 10,
+          "event": "inspect_images",
+          "title": "Inspect the fourth frame batch",
+          "reasoning": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene.",
+          "media": [
+            "scene-base-037",
+            "scene-base-038",
+            "scene-base-039",
+            "scene-base-040",
+            "scene-base-041",
+            "scene-base-042",
+            "scene-base-043",
+            "scene-base-044",
+            "scene-base-045",
+            "scene-base-046",
+            "scene-base-047",
+            "scene-base-048"
+          ],
+          "parameters": {},
+          "focus": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene.",
+          "tool": "inspect_images",
+          "phase": "observe",
+          "summary": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene."
+        },
+        {
+          "number": 10,
+          "recordIndex": 11,
+          "event": "tool_call",
+          "title": "Sample 4600–5900 s",
+          "reasoning": "I haven't found the scene yet. Let me continue sampling more frames to find the couple walking down a tree-lined path with golden light. I should check more time ranges, particularly looking for outdoor scenes with trees and golden lighting.",
+          "media": [
+            "scene-base-049",
+            "scene-base-050",
+            "scene-base-051",
+            "scene-base-052",
+            "scene-base-053",
+            "scene-base-054",
+            "scene-base-055",
+            "scene-base-056",
+            "scene-base-057",
+            "scene-base-058",
+            "scene-base-059",
+            "scene-base-060"
+          ],
+          "parameters": {
+            "timestamps": [
+              4600,
+              4700,
+              4800,
+              4900,
+              5100,
+              5200,
+              5300,
+              5400,
+              5600,
+              5700,
+              5800,
+              5900
+            ],
+            "width": 640
+          },
+          "focus": "",
+          "tool": "extract_frames_at",
+          "phase": "prepare",
+          "summary": "Extract 12 timestamped frames for the next observation."
+        },
+        {
+          "number": 11,
+          "recordIndex": 12,
+          "event": "inspect_images",
+          "title": "Inspect the fifth frame batch",
+          "reasoning": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene.",
+          "media": [
+            "scene-base-049",
+            "scene-base-050",
+            "scene-base-051",
+            "scene-base-052",
+            "scene-base-053",
+            "scene-base-054",
+            "scene-base-055",
+            "scene-base-056",
+            "scene-base-057",
+            "scene-base-058",
+            "scene-base-059",
+            "scene-base-060"
+          ],
+          "parameters": {},
+          "focus": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene.",
+          "tool": "inspect_images",
+          "phase": "observe",
+          "summary": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene."
+        },
+        {
+          "number": 12,
+          "recordIndex": 13,
+          "event": "tool_call",
+          "title": "Sample the opening scenes",
+          "reasoning": "I've sampled many frames throughout the video but haven't found the specific scene of a couple walking down a tree-lined path with golden light. Let me try a different approach - I'll sample more densely in areas I haven't covered yet, particularly looking for outdoor scenes with trees and golden lighting.\n\nLet me try sampling in the earlier parts of the video more densely, and also check some areas I may have missed.",
+          "media": [
+            "scene-base-061",
+            "scene-base-062",
+            "scene-base-063",
+            "scene-base-064",
+            "scene-base-065",
+            "scene-base-066",
+            "scene-base-067",
+            "scene-base-068",
+            "scene-base-069",
+            "scene-base-070",
+            "scene-base-071",
+            "scene-base-072"
+          ],
+          "parameters": {
+            "timestamps": [
+              10,
+              20,
+              30,
+              40,
+              60,
+              70,
+              80,
+              90,
+              150,
+              160,
+              170,
+              180
+            ],
+            "width": 640
+          },
+          "focus": "",
+          "tool": "extract_frames_at",
+          "phase": "prepare",
+          "summary": "Extract 12 timestamped frames for the next observation."
+        },
+        {
+          "number": 13,
+          "recordIndex": 14,
+          "event": "inspect_images",
+          "title": "Inspect the sixth frame batch",
+          "reasoning": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene.",
+          "media": [
+            "scene-base-061",
+            "scene-base-062",
+            "scene-base-063",
+            "scene-base-064",
+            "scene-base-065",
+            "scene-base-066",
+            "scene-base-067",
+            "scene-base-068",
+            "scene-base-069",
+            "scene-base-070",
+            "scene-base-071",
+            "scene-base-072"
+          ],
+          "parameters": {},
+          "focus": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene.",
+          "tool": "inspect_images",
+          "phase": "observe",
+          "summary": "Look for a couple walking down a tree-lined path with golden light. Identify which frames show this scene."
+        },
+        {
+          "number": 14,
+          "recordIndex": 15,
+          "event": "tool_call",
+          "title": "Sample the candidate near 1900 s",
+          "reasoning": "I've sampled many frames throughout the video but haven't found the specific scene of a couple walking down a tree-lined path with golden light. Let me try a different approach - I'll sample more densely in areas I haven't covered yet, particularly around the 1800-2000 second range where I saw some outdoor scenes with a couple.\n\nLooking back at my samples:\n- At 1900s, I saw a couple outdoors with greenery, but it wasn't clearly a tree-lined path with golden light\n- At 3100s, I saw a couple outdoors with trees in the background\n\nLet me try to find more specific outdoor scenes with golden lighting. I should sample more densely around areas where I saw outdoor scenes with couples.",
+          "media": [
+            "scene-base-073",
+            "scene-base-074",
+            "scene-base-075",
+            "scene-base-076",
+            "scene-base-077",
+            "scene-base-078",
+            "scene-base-079",
+            "scene-base-080",
+            "scene-base-081",
+            "scene-base-082",
+            "scene-base-083",
+            "scene-base-084"
+          ],
+          "parameters": {
+            "timestamps": [
+              1850,
+              1860,
+              1870,
+              1880,
+              1890,
+              1900,
+              1910,
+              1920,
+              1930,
+              1940,
+              1950,
+              1960
+            ],
+            "width": 640
+          },
+          "focus": "",
+          "tool": "extract_frames_at",
+          "phase": "prepare",
+          "summary": "Extract 12 timestamped frames for the next observation."
+        },
+        {
+          "number": 15,
+          "recordIndex": 16,
+          "event": "inspect_images",
+          "title": "Inspect the local candidate",
+          "reasoning": "I found a promising frame at 1900 seconds showing a couple in what appears to be a tree-lined area with golden light. Let me inspect these frames more closely to confirm this is the scene I'm looking for and to determine the exact start and end times.",
+          "media": [
+            "scene-base-073",
+            "scene-base-074",
+            "scene-base-075",
+            "scene-base-076",
+            "scene-base-077",
+            "scene-base-078",
+            "scene-base-079",
+            "scene-base-080",
+            "scene-base-081",
+            "scene-base-082",
+            "scene-base-083",
+            "scene-base-084"
+          ],
+          "parameters": {},
+          "focus": "Look for a couple walking down a tree-lined path with golden light. This frame at 1900s shows a couple in a tree-lined area with golden light. Check all frames to see the full scene and determine the start and end of this event.",
+          "tool": "inspect_images",
+          "phase": "observe",
+          "summary": "I found a promising frame at 1900 seconds showing a couple in what appears to be a tree-lined area with golden light. Let me inspect these frames more closely to confirm this is the scene I'm looking for and to determine the exact start and end times."
+        },
+        {
+          "number": 16,
+          "recordIndex": 17,
+          "event": "tool_call",
+          "title": "Extract 1860–1940 s",
+          "reasoning": "I found the scene! Looking at the frames from 1870s to 1930s, I can see a couple (a young woman in a school uniform and a young man in a yellow shirt) walking down a tree-lined path with golden sunlight filtering through the trees. This matches the description \"a couple walk down a tree‑lined path framed by golden light.\"\n\nLet me trace the scene:\n- 1870s: The couple appears in a tree-lined area with golden light\n- 1880s: They continue walking\n- 1890s: The woman touches the man's shoulder\n- 1900s: They're still walking together\n- 1910s: They continue their conversation\n- 1920s: An overhead shot shows them walking on the path\n- 1930s: Still walking on the path\n- 1940s: The scene changes to an indoor setting\n\nSo the scene appears to be from around 1870s to 1930s. Let me extract a video clip to get more precise boundaries.",
+          "media": [
+            "scene-base-085"
+          ],
+          "parameters": {
+            "end": 1940,
+            "fps": 5,
+            "start": 1860,
+            "width": 640
+          },
+          "focus": "",
+          "tool": "extract_video_clip",
+          "phase": "prepare",
+          "summary": "Prepare a 80-second video observation over 1860–1940 s."
+        },
+        {
+          "number": 17,
+          "recordIndex": 18,
+          "event": "inspect_video",
+          "title": "Check the candidate in video",
+          "reasoning": "Find the exact start and end of the scene where a couple walks down a tree-lined path with golden light. The scene should show them walking together on a path surrounded by trees with warm golden lighting.",
+          "media": [
+            "scene-base-085"
+          ],
+          "parameters": {},
+          "focus": "Find the exact start and end of the scene where a couple walks down a tree-lined path with golden light. The scene should show them walking together on a path surrounded by trees with warm golden lighting.",
+          "tool": "inspect_video",
+          "phase": "observe",
+          "summary": "Find the exact start and end of the scene where a couple walks down a tree-lined path with golden light. The scene should show them walking together on a path surrounded by trees with warm golden lighting."
+        },
+        {
+          "number": 18,
+          "recordIndex": 19,
+          "event": "final_answer",
+          "title": "Return the predicted interval",
+          "reasoning": "Looking at the video, I can see the scene with the couple walking down a tree-lined path with golden light. Let me identify the exact start and end times:\n\nThe scene begins around 0:08-0:09 in the video clip (which corresponds to approximately 1868-1869 seconds in the source video), where we see a young woman in a school uniform standing in a tree-lined path with golden sunlight filtering through the leaves. A young man in a yellow shirt appears behind her.\n\nThe scene continues with them walking and talking along this path. The golden light is very prominent throughout this sequence, with sunlight streaming through the trees creating a warm, romantic atmosphere.\n\nThe scene ends around 0:54-0:55 in the video clip (approximately 1914-1915 seconds in the source video), when the camera angle changes to an overhead shot and the scene transitions away from the tree-lined path.\n\nSo the event happens from approximately 1868 seconds to 1915 seconds in the source video.",
+          "media": [],
+          "parameters": {},
+          "focus": "",
+          "phase": "answer",
+          "tool": "final_answer",
+          "answer": "The event happens in 1868 - 1915 seconds.",
+          "summary": "The scene shows a couple (a young woman in school uniform and a young man in yellow shirt) walking down a tree-lined path with golden sunlight filtering through the leaves. The scene starts when the woman appears on the path around 1868 seconds and ends when the camera transitions to an overhead shot around 1915 seconds. The golden light and tree-lined path are clearly visible throughout this sequence."
+        }
+      ],
+      "media": [
+        {
+          "id": "scene-base-001",
+          "src": "assets/images/cases/scene/base/scene-base-001.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-001-thumb.webp",
+          "kind": "image",
+          "time": 100.0,
+          "caption": "100 s"
+        },
+        {
+          "id": "scene-base-002",
+          "src": "assets/images/cases/scene/base/scene-base-002.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-002-thumb.webp",
+          "kind": "image",
+          "time": 500.0,
+          "caption": "500 s"
+        },
+        {
+          "id": "scene-base-003",
+          "src": "assets/images/cases/scene/base/scene-base-003.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-003-thumb.webp",
+          "kind": "image",
+          "time": 1000.0,
+          "caption": "1000 s"
+        },
+        {
+          "id": "scene-base-004",
+          "src": "assets/images/cases/scene/base/scene-base-004.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-004-thumb.webp",
+          "kind": "image",
+          "time": 1500.0,
+          "caption": "1500 s"
+        },
+        {
+          "id": "scene-base-005",
+          "src": "assets/images/cases/scene/base/scene-base-005.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-005-thumb.webp",
+          "kind": "image",
+          "time": 2000.0,
+          "caption": "2000 s"
+        },
+        {
+          "id": "scene-base-006",
+          "src": "assets/images/cases/scene/base/scene-base-006.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-006-thumb.webp",
+          "kind": "image",
+          "time": 2500.0,
+          "caption": "2500 s"
+        },
+        {
+          "id": "scene-base-007",
+          "src": "assets/images/cases/scene/base/scene-base-007.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-007-thumb.webp",
+          "kind": "image",
+          "time": 3000.0,
+          "caption": "3000 s"
+        },
+        {
+          "id": "scene-base-008",
+          "src": "assets/images/cases/scene/base/scene-base-008.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-008-thumb.webp",
+          "kind": "image",
+          "time": 3500.0,
+          "caption": "3500 s"
+        },
+        {
+          "id": "scene-base-009",
+          "src": "assets/images/cases/scene/base/scene-base-009.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-009-thumb.webp",
+          "kind": "image",
+          "time": 4000.0,
+          "caption": "4000 s"
+        },
+        {
+          "id": "scene-base-010",
+          "src": "assets/images/cases/scene/base/scene-base-010.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-010-thumb.webp",
+          "kind": "image",
+          "time": 4500.0,
+          "caption": "4500 s"
+        },
+        {
+          "id": "scene-base-011",
+          "src": "assets/images/cases/scene/base/scene-base-011.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-011-thumb.webp",
+          "kind": "image",
+          "time": 5000.0,
+          "caption": "5000 s"
+        },
+        {
+          "id": "scene-base-012",
+          "src": "assets/images/cases/scene/base/scene-base-012.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-012-thumb.webp",
+          "kind": "image",
+          "time": 5500.0,
+          "caption": "5500 s"
+        },
+        {
+          "id": "scene-base-013",
+          "src": "assets/images/cases/scene/base/scene-base-013.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-013-thumb.webp",
+          "kind": "image",
+          "time": 50.0,
+          "caption": "50 s"
+        },
+        {
+          "id": "scene-base-014",
+          "src": "assets/images/cases/scene/base/scene-base-014.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-014-thumb.webp",
+          "kind": "image",
+          "time": 200.0,
+          "caption": "200 s"
+        },
+        {
+          "id": "scene-base-015",
+          "src": "assets/images/cases/scene/base/scene-base-015.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-015-thumb.webp",
+          "kind": "image",
+          "time": 300.0,
+          "caption": "300 s"
+        },
+        {
+          "id": "scene-base-016",
+          "src": "assets/images/cases/scene/base/scene-base-016.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-016-thumb.webp",
+          "kind": "image",
+          "time": 400.0,
+          "caption": "400 s"
+        },
+        {
+          "id": "scene-base-017",
+          "src": "assets/images/cases/scene/base/scene-base-017.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-017-thumb.webp",
+          "kind": "image",
+          "time": 600.0,
+          "caption": "600 s"
+        },
+        {
+          "id": "scene-base-018",
+          "src": "assets/images/cases/scene/base/scene-base-018.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-018-thumb.webp",
+          "kind": "image",
+          "time": 700.0,
+          "caption": "700 s"
+        },
+        {
+          "id": "scene-base-019",
+          "src": "assets/images/cases/scene/base/scene-base-019.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-019-thumb.webp",
+          "kind": "image",
+          "time": 800.0,
+          "caption": "800 s"
+        },
+        {
+          "id": "scene-base-020",
+          "src": "assets/images/cases/scene/base/scene-base-020.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-020-thumb.webp",
+          "kind": "image",
+          "time": 900.0,
+          "caption": "900 s"
+        },
+        {
+          "id": "scene-base-021",
+          "src": "assets/images/cases/scene/base/scene-base-021.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-021-thumb.webp",
+          "kind": "image",
+          "time": 1100.0,
+          "caption": "1100 s"
+        },
+        {
+          "id": "scene-base-022",
+          "src": "assets/images/cases/scene/base/scene-base-022.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-022-thumb.webp",
+          "kind": "image",
+          "time": 1200.0,
+          "caption": "1200 s"
+        },
+        {
+          "id": "scene-base-023",
+          "src": "assets/images/cases/scene/base/scene-base-023.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-023-thumb.webp",
+          "kind": "image",
+          "time": 1300.0,
+          "caption": "1300 s"
+        },
+        {
+          "id": "scene-base-024",
+          "src": "assets/images/cases/scene/base/scene-base-024.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-024-thumb.webp",
+          "kind": "image",
+          "time": 1400.0,
+          "caption": "1400 s"
+        },
+        {
+          "id": "scene-base-025",
+          "src": "assets/images/cases/scene/base/scene-base-025.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-025-thumb.webp",
+          "kind": "image",
+          "time": 1600.0,
+          "caption": "1600 s"
+        },
+        {
+          "id": "scene-base-026",
+          "src": "assets/images/cases/scene/base/scene-base-026.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-026-thumb.webp",
+          "kind": "image",
+          "time": 1700.0,
+          "caption": "1700 s"
+        },
+        {
+          "id": "scene-base-027",
+          "src": "assets/images/cases/scene/base/scene-base-027.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-027-thumb.webp",
+          "kind": "image",
+          "time": 1800.0,
+          "caption": "1800 s"
+        },
+        {
+          "id": "scene-base-028",
+          "src": "assets/images/cases/scene/base/scene-base-028.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-028-thumb.webp",
+          "kind": "image",
+          "time": 1900.0,
+          "caption": "1900 s"
+        },
+        {
+          "id": "scene-base-029",
+          "src": "assets/images/cases/scene/base/scene-base-029.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-029-thumb.webp",
+          "kind": "image",
+          "time": 2100.0,
+          "caption": "2100 s"
+        },
+        {
+          "id": "scene-base-030",
+          "src": "assets/images/cases/scene/base/scene-base-030.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-030-thumb.webp",
+          "kind": "image",
+          "time": 2200.0,
+          "caption": "2200 s"
+        },
+        {
+          "id": "scene-base-031",
+          "src": "assets/images/cases/scene/base/scene-base-031.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-031-thumb.webp",
+          "kind": "image",
+          "time": 2300.0,
+          "caption": "2300 s"
+        },
+        {
+          "id": "scene-base-032",
+          "src": "assets/images/cases/scene/base/scene-base-032.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-032-thumb.webp",
+          "kind": "image",
+          "time": 2400.0,
+          "caption": "2400 s"
+        },
+        {
+          "id": "scene-base-033",
+          "src": "assets/images/cases/scene/base/scene-base-033.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-033-thumb.webp",
+          "kind": "image",
+          "time": 2600.0,
+          "caption": "2600 s"
+        },
+        {
+          "id": "scene-base-034",
+          "src": "assets/images/cases/scene/base/scene-base-034.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-034-thumb.webp",
+          "kind": "image",
+          "time": 2700.0,
+          "caption": "2700 s"
+        },
+        {
+          "id": "scene-base-035",
+          "src": "assets/images/cases/scene/base/scene-base-035.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-035-thumb.webp",
+          "kind": "image",
+          "time": 2800.0,
+          "caption": "2800 s"
+        },
+        {
+          "id": "scene-base-036",
+          "src": "assets/images/cases/scene/base/scene-base-036.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-036-thumb.webp",
+          "kind": "image",
+          "time": 2900.0,
+          "caption": "2900 s"
+        },
+        {
+          "id": "scene-base-037",
+          "src": "assets/images/cases/scene/base/scene-base-037.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-037-thumb.webp",
+          "kind": "image",
+          "time": 3100.0,
+          "caption": "3100 s"
+        },
+        {
+          "id": "scene-base-038",
+          "src": "assets/images/cases/scene/base/scene-base-038.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-038-thumb.webp",
+          "kind": "image",
+          "time": 3200.0,
+          "caption": "3200 s"
+        },
+        {
+          "id": "scene-base-039",
+          "src": "assets/images/cases/scene/base/scene-base-039.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-039-thumb.webp",
+          "kind": "image",
+          "time": 3300.0,
+          "caption": "3300 s"
+        },
+        {
+          "id": "scene-base-040",
+          "src": "assets/images/cases/scene/base/scene-base-040.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-040-thumb.webp",
+          "kind": "image",
+          "time": 3400.0,
+          "caption": "3400 s"
+        },
+        {
+          "id": "scene-base-041",
+          "src": "assets/images/cases/scene/base/scene-base-041.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-041-thumb.webp",
+          "kind": "image",
+          "time": 3600.0,
+          "caption": "3600 s"
+        },
+        {
+          "id": "scene-base-042",
+          "src": "assets/images/cases/scene/base/scene-base-042.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-042-thumb.webp",
+          "kind": "image",
+          "time": 3700.0,
+          "caption": "3700 s"
+        },
+        {
+          "id": "scene-base-043",
+          "src": "assets/images/cases/scene/base/scene-base-043.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-043-thumb.webp",
+          "kind": "image",
+          "time": 3800.0,
+          "caption": "3800 s"
+        },
+        {
+          "id": "scene-base-044",
+          "src": "assets/images/cases/scene/base/scene-base-044.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-044-thumb.webp",
+          "kind": "image",
+          "time": 3900.0,
+          "caption": "3900 s"
+        },
+        {
+          "id": "scene-base-045",
+          "src": "assets/images/cases/scene/base/scene-base-045.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-045-thumb.webp",
+          "kind": "image",
+          "time": 4100.0,
+          "caption": "4100 s"
+        },
+        {
+          "id": "scene-base-046",
+          "src": "assets/images/cases/scene/base/scene-base-046.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-046-thumb.webp",
+          "kind": "image",
+          "time": 4200.0,
+          "caption": "4200 s"
+        },
+        {
+          "id": "scene-base-047",
+          "src": "assets/images/cases/scene/base/scene-base-047.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-047-thumb.webp",
+          "kind": "image",
+          "time": 4300.0,
+          "caption": "4300 s"
+        },
+        {
+          "id": "scene-base-048",
+          "src": "assets/images/cases/scene/base/scene-base-048.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-048-thumb.webp",
+          "kind": "image",
+          "time": 4400.0,
+          "caption": "4400 s"
+        },
+        {
+          "id": "scene-base-049",
+          "src": "assets/images/cases/scene/base/scene-base-049.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-049-thumb.webp",
+          "kind": "image",
+          "time": 4600.0,
+          "caption": "4600 s"
+        },
+        {
+          "id": "scene-base-050",
+          "src": "assets/images/cases/scene/base/scene-base-050.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-050-thumb.webp",
+          "kind": "image",
+          "time": 4700.0,
+          "caption": "4700 s"
+        },
+        {
+          "id": "scene-base-051",
+          "src": "assets/images/cases/scene/base/scene-base-051.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-051-thumb.webp",
+          "kind": "image",
+          "time": 4800.0,
+          "caption": "4800 s"
+        },
+        {
+          "id": "scene-base-052",
+          "src": "assets/images/cases/scene/base/scene-base-052.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-052-thumb.webp",
+          "kind": "image",
+          "time": 4900.0,
+          "caption": "4900 s"
+        },
+        {
+          "id": "scene-base-053",
+          "src": "assets/images/cases/scene/base/scene-base-053.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-053-thumb.webp",
+          "kind": "image",
+          "time": 5100.0,
+          "caption": "5100 s"
+        },
+        {
+          "id": "scene-base-054",
+          "src": "assets/images/cases/scene/base/scene-base-054.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-054-thumb.webp",
+          "kind": "image",
+          "time": 5200.0,
+          "caption": "5200 s"
+        },
+        {
+          "id": "scene-base-055",
+          "src": "assets/images/cases/scene/base/scene-base-055.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-055-thumb.webp",
+          "kind": "image",
+          "time": 5300.0,
+          "caption": "5300 s"
+        },
+        {
+          "id": "scene-base-056",
+          "src": "assets/images/cases/scene/base/scene-base-056.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-056-thumb.webp",
+          "kind": "image",
+          "time": 5400.0,
+          "caption": "5400 s"
+        },
+        {
+          "id": "scene-base-057",
+          "src": "assets/images/cases/scene/base/scene-base-057.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-057-thumb.webp",
+          "kind": "image",
+          "time": 5600.0,
+          "caption": "5600 s"
+        },
+        {
+          "id": "scene-base-058",
+          "src": "assets/images/cases/scene/base/scene-base-058.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-058-thumb.webp",
+          "kind": "image",
+          "time": 5700.0,
+          "caption": "5700 s"
+        },
+        {
+          "id": "scene-base-059",
+          "src": "assets/images/cases/scene/base/scene-base-059.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-059-thumb.webp",
+          "kind": "image",
+          "time": 5800.0,
+          "caption": "5800 s"
+        },
+        {
+          "id": "scene-base-060",
+          "src": "assets/images/cases/scene/base/scene-base-060.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-060-thumb.webp",
+          "kind": "image",
+          "time": 5900.0,
+          "caption": "5900 s"
+        },
+        {
+          "id": "scene-base-061",
+          "src": "assets/images/cases/scene/base/scene-base-061.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-061-thumb.webp",
+          "kind": "image",
+          "time": 10.0,
+          "caption": "10 s"
+        },
+        {
+          "id": "scene-base-062",
+          "src": "assets/images/cases/scene/base/scene-base-062.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-062-thumb.webp",
+          "kind": "image",
+          "time": 20.0,
+          "caption": "20 s"
+        },
+        {
+          "id": "scene-base-063",
+          "src": "assets/images/cases/scene/base/scene-base-063.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-063-thumb.webp",
+          "kind": "image",
+          "time": 30.0,
+          "caption": "30 s"
+        },
+        {
+          "id": "scene-base-064",
+          "src": "assets/images/cases/scene/base/scene-base-064.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-064-thumb.webp",
+          "kind": "image",
+          "time": 40.0,
+          "caption": "40 s"
+        },
+        {
+          "id": "scene-base-065",
+          "src": "assets/images/cases/scene/base/scene-base-065.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-065-thumb.webp",
+          "kind": "image",
+          "time": 60.0,
+          "caption": "60 s"
+        },
+        {
+          "id": "scene-base-066",
+          "src": "assets/images/cases/scene/base/scene-base-066.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-066-thumb.webp",
+          "kind": "image",
+          "time": 70.0,
+          "caption": "70 s"
+        },
+        {
+          "id": "scene-base-067",
+          "src": "assets/images/cases/scene/base/scene-base-067.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-067-thumb.webp",
+          "kind": "image",
+          "time": 80.0,
+          "caption": "80 s"
+        },
+        {
+          "id": "scene-base-068",
+          "src": "assets/images/cases/scene/base/scene-base-068.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-068-thumb.webp",
+          "kind": "image",
+          "time": 90.0,
+          "caption": "90 s"
+        },
+        {
+          "id": "scene-base-069",
+          "src": "assets/images/cases/scene/base/scene-base-069.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-069-thumb.webp",
+          "kind": "image",
+          "time": 150.0,
+          "caption": "150 s"
+        },
+        {
+          "id": "scene-base-070",
+          "src": "assets/images/cases/scene/base/scene-base-070.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-070-thumb.webp",
+          "kind": "image",
+          "time": 160.0,
+          "caption": "160 s"
+        },
+        {
+          "id": "scene-base-071",
+          "src": "assets/images/cases/scene/base/scene-base-071.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-071-thumb.webp",
+          "kind": "image",
+          "time": 170.0,
+          "caption": "170 s"
+        },
+        {
+          "id": "scene-base-072",
+          "src": "assets/images/cases/scene/base/scene-base-072.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-072-thumb.webp",
+          "kind": "image",
+          "time": 180.0,
+          "caption": "180 s"
+        },
+        {
+          "id": "scene-base-073",
+          "src": "assets/images/cases/scene/base/scene-base-073.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-073-thumb.webp",
+          "kind": "image",
+          "time": 1850.0,
+          "caption": "1850 s"
+        },
+        {
+          "id": "scene-base-074",
+          "src": "assets/images/cases/scene/base/scene-base-074.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-074-thumb.webp",
+          "kind": "image",
+          "time": 1860.0,
+          "caption": "1860 s"
+        },
+        {
+          "id": "scene-base-075",
+          "src": "assets/images/cases/scene/base/scene-base-075.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-075-thumb.webp",
+          "kind": "image",
+          "time": 1870.0,
+          "caption": "1870 s"
+        },
+        {
+          "id": "scene-base-076",
+          "src": "assets/images/cases/scene/base/scene-base-076.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-076-thumb.webp",
+          "kind": "image",
+          "time": 1880.0,
+          "caption": "1880 s"
+        },
+        {
+          "id": "scene-base-077",
+          "src": "assets/images/cases/scene/base/scene-base-077.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-077-thumb.webp",
+          "kind": "image",
+          "time": 1890.0,
+          "caption": "1890 s"
+        },
+        {
+          "id": "scene-base-078",
+          "src": "assets/images/cases/scene/base/scene-base-078.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-078-thumb.webp",
+          "kind": "image",
+          "time": 1900.0,
+          "caption": "1900 s"
+        },
+        {
+          "id": "scene-base-079",
+          "src": "assets/images/cases/scene/base/scene-base-079.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-079-thumb.webp",
+          "kind": "image",
+          "time": 1910.0,
+          "caption": "1910 s"
+        },
+        {
+          "id": "scene-base-080",
+          "src": "assets/images/cases/scene/base/scene-base-080.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-080-thumb.webp",
+          "kind": "image",
+          "time": 1920.0,
+          "caption": "1920 s"
+        },
+        {
+          "id": "scene-base-081",
+          "src": "assets/images/cases/scene/base/scene-base-081.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-081-thumb.webp",
+          "kind": "image",
+          "time": 1930.0,
+          "caption": "1930 s"
+        },
+        {
+          "id": "scene-base-082",
+          "src": "assets/images/cases/scene/base/scene-base-082.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-082-thumb.webp",
+          "kind": "image",
+          "time": 1940.0,
+          "caption": "1940 s"
+        },
+        {
+          "id": "scene-base-083",
+          "src": "assets/images/cases/scene/base/scene-base-083.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-083-thumb.webp",
+          "kind": "image",
+          "time": 1950.0,
+          "caption": "1950 s"
+        },
+        {
+          "id": "scene-base-084",
+          "src": "assets/images/cases/scene/base/scene-base-084.jpg",
+          "thumb": "assets/images/cases/scene/base/scene-base-084-thumb.webp",
+          "kind": "image",
+          "time": 1960.0,
+          "caption": "1960 s"
+        },
+        {
+          "id": "scene-base-085",
+          "src": "assets/videos/cases/scene/base/scene-base-085.mp4",
+          "thumb": "assets/images/cases/scene/base/scene-base-085-thumb.webp",
+          "kind": "video",
+          "start": 1860.0,
+          "end": 1940.0,
+          "caption": "1860–1940 s"
+        }
+      ]
+    },
+    "evolved": {
+      "name": "Evolved Skill",
+      "metrics": {
+        "prediction": [
+          5703.0,
+          5714.0
+        ],
+        "iou": 1.0,
+        "cumulative_visual_tokens": 128820,
+        "cumulative_image_tokens": 128820,
+        "cumulative_video_tokens": 0,
+        "model_calls": 10,
+        "local_tool_calls": 5,
+        "image_observations": 4,
+        "video_observations": 0
+      },
+      "steps": [
+        {
+          "number": 1,
+          "recordIndex": 2,
+          "event": "tool_call",
+          "title": "Establish the search horizon",
+          "reasoning": "I need to find a specific moment in a 6005-second video where \"a couple walk down a tree-lined path framed by golden light.\" This is a visual search task that requires finding a specific scene.\n\nLet me start by getting the video metadata to understand the duration and structure, then perform a broad search to locate this scene.\n\nFirst, I'll probe the media to get basic metadata.",
+          "media": [],
+          "parameters": {},
+          "focus": "",
+          "tool": "probe_media",
+          "phase": "setup",
+          "summary": "The source video spans 6005.2 seconds."
+        },
+        {
+          "number": 2,
+          "recordIndex": 3,
+          "event": "tool_call",
+          "title": "Build eight contact sheets",
+          "reasoning": "The video is 6005 seconds long. I need to find when a couple walks down a tree-lined path framed by golden light. This is a specific visual scene that I need to locate. Let me start by creating a broad contact sheet pack to scan through the video and find potential candidates.",
+          "media": [
+            "scene-evolved-001",
+            "scene-evolved-002",
+            "scene-evolved-003",
+            "scene-evolved-004",
+            "scene-evolved-005",
+            "scene-evolved-006",
+            "scene-evolved-007",
+            "scene-evolved-008"
+          ],
+          "parameters": {
+            "start": 0,
+            "end": 6005,
+            "sheet_count": 8,
+            "frame_count_per_sheet": 24,
+            "cell_width": 320
+          },
+          "focus": "",
+          "tool": "make_contact_sheet_pack",
+          "phase": "prepare",
+          "summary": "Organize 192 sampled frames into eight timestamped contact sheets for global comparison."
+        },
+        {
+          "number": 3,
+          "recordIndex": 4,
+          "event": "inspect_images",
+          "title": "Compare the global evidence",
+          "reasoning": "I have 8 contact sheets covering the entire video. Let me inspect them to find the scene with a couple walking down a tree-lined path with golden light.",
+          "media": [
+            "scene-evolved-001",
+            "scene-evolved-002",
+            "scene-evolved-003",
+            "scene-evolved-004",
+            "scene-evolved-005",
+            "scene-evolved-006",
+            "scene-evolved-007",
+            "scene-evolved-008"
+          ],
+          "parameters": {},
+          "focus": "Find cells showing a couple walking down a tree-lined path framed by golden light. Look for outdoor scenes with trees, a path, two people (a couple) walking, and warm/golden lighting. Report any exact matches, near-misses, or context-positive cells where this scene might be present. Include the sheet number, cell position, and timestamp for each candidate.",
+          "tool": "inspect_images",
+          "phase": "observe",
+          "summary": "I have 8 contact sheets covering the entire video. Let me inspect them to find the scene with a couple walking down a tree-lined path with golden light."
+        },
+        {
+          "number": 4,
+          "recordIndex": 5,
+          "event": "tool_call",
+          "title": "Build a local contact sheet",
+          "reasoning": "Looking at the contact sheets, I need to find a scene with a couple walking down a tree-lined path with golden light. Let me examine the sheets:\n\nSheet 8 (the last one) has some promising cells:\n- At source time 5707.878s, I can see what appears to be a tree-lined path with golden/sunset lighting. There's a silhouette of what looks like a person or couple walking on a path with trees on both sides and warm golden light in the background.\n\nLet me look more carefully at the cells:\n- Sheet 8, cell showing 5707.878s: This shows a path with trees on both sides, golden sunset light, and what appears to be a couple walking. This looks like a strong candidate!\n\nLet me also check other sheets for similar scenes:\n- Sheet 2 has some outdoor scenes but they don't match the description\n- Sheet 3 has some outdoor scenes with trees but not the golden light path scene\n- Sheet 4 has some outdoor scenes but not matching\n\nThe strongest candidate appears to be around 5707.878 seconds on sheet 8. Let me create a more focused contact sheet or extract frames around this timestamp to get better detail and determine the exact start and end times.\n\nI should create a denser contact sheet or extract frames around this area to confirm and get precise boundaries.",
+          "media": [
+            "scene-evolved-009"
+          ],
+          "parameters": {
+            "start": 5680,
+            "end": 5740,
+            "frame_count": 12,
+            "cell_width": 480
+          },
+          "focus": "",
+          "tool": "make_contact_sheet",
+          "phase": "prepare",
+          "summary": "Prepare a local contact sheet to examine the candidate and its temporal context."
+        },
+        {
+          "number": 5,
+          "recordIndex": 6,
+          "event": "inspect_images",
+          "title": "Inspect 5680–5740 s",
+          "reasoning": "I found a promising candidate at around 5707.878 seconds on sheet 8 showing a couple walking down a tree-lined path with golden light. Let me inspect this focused contact sheet to confirm and determine the exact boundaries.",
+          "media": [
+            "scene-evolved-009"
+          ],
+          "parameters": {},
+          "focus": "Examine this sheet showing frames from 5680-5740 seconds. Look for the scene of a couple walking down a tree-lined path with golden light. Identify which cells show this scene, and determine the start and end of this walking sequence. Report the exact timestamps where the couple is visible walking on the path with golden lighting.",
+          "tool": "inspect_images",
+          "phase": "observe",
+          "summary": "I found a promising candidate at around 5707.878 seconds on sheet 8 showing a couple walking down a tree-lined path with golden light. Let me inspect this focused contact sheet to confirm and determine the exact boundaries."
+        },
+        {
+          "number": 6,
+          "recordIndex": 7,
+          "event": "tool_call",
+          "title": "Sample the scene in detail",
+          "reasoning": "I found the scene! Looking at the contact sheet, I can see:\n\n- At 5707.500s: A couple walking down a tree-lined path with golden sunlight filtering through the trees\n- At 5712.500s: The same scene continues - couple walking on the path with golden light\n\nThe scene appears to be between approximately 5707-5712 seconds. Let me extract more precise frames around this area to determine the exact start and end times of this walking sequence.",
+          "media": [
+            "scene-evolved-016",
+            "scene-evolved-017",
+            "scene-evolved-018",
+            "scene-evolved-019",
+            "scene-evolved-020",
+            "scene-evolved-021",
+            "scene-evolved-022"
+          ],
+          "parameters": {
+            "timestamps": [
+              5705,
+              5707,
+              5709,
+              5711,
+              5713,
+              5715,
+              5717
+            ],
+            "width": 960
+          },
+          "focus": "",
+          "tool": "extract_frames_at",
+          "phase": "prepare",
+          "summary": "Extract 7 timestamped frames for the next observation."
+        },
+        {
+          "number": 7,
+          "recordIndex": 8,
+          "event": "inspect_images",
+          "title": "Inspect seven local frames",
+          "reasoning": "Examine these frames from 5705-5717 seconds showing a couple walking on a tree-lined path with golden light. Determine the exact start and end times of this walking scene. Report when the couple first appears walking on the path with golden lighting and when they stop or the scene ends.",
+          "media": [
+            "scene-evolved-016",
+            "scene-evolved-017",
+            "scene-evolved-018",
+            "scene-evolved-019",
+            "scene-evolved-020",
+            "scene-evolved-021",
+            "scene-evolved-022"
+          ],
+          "parameters": {},
+          "focus": "Examine these frames from 5705-5717 seconds showing a couple walking on a tree-lined path with golden light. Determine the exact start and end times of this walking scene. Report when the couple first appears walking on the path with golden lighting and when they stop or the scene ends.",
+          "tool": "inspect_images",
+          "phase": "observe",
+          "summary": "Examine these frames from 5705-5717 seconds showing a couple walking on a tree-lined path with golden light. Determine the exact start and end times of this walking scene. Report when the couple first appears walking on the path with golden lighting and when they stop or the scene ends."
+        },
+        {
+          "number": 8,
+          "recordIndex": 9,
+          "event": "tool_call",
+          "title": "Probe the temporal boundaries",
+          "reasoning": "Based on the frames I've inspected:\n\n- 5705.000s: Shows a couple walking on a tree-lined path with golden sunlight filtering through the trees\n- 5707.000s: Same scene, couple continuing to walk\n- 5709.000s: Same scene, couple walking further down the path\n- 5711.000s: Same scene, couple walking\n- 5713.000s: Same scene, couple walking\n- 5715.000s: Black screen (scene has ended)\n- 5717.000s: Credits starting to appear\n\nThe scene with the couple walking on the tree-lined path with golden light appears to be from around 5705 seconds to around 5713-5714 seconds. The scene transitions to black at 5715 seconds.\n\nLet me check the earlier contact sheet to see if I can find when this scene starts. From the contact sheet at 5707.500s and 5712.500s, I can see the couple walking scene. Let me look at the broader context to find the exact start.\n\nFrom the contact sheet I created (5680-5740 seconds), I saw:\n- 5702.500s: Shows a different scene (people indoors)\n- 5707.500s: Shows the couple walking on the path with golden light\n- 5712.500s: Shows the couple walking on the path with golden light\n- 5717.500s: Black screen with credits\n\nSo the scene starts somewhere between 5702.5 and 5707.5 seconds. Let me check frames around 5700-5705 to find the exact start.\n\nActually, looking at my extracted frames:\n- 5705.000s already shows the couple walking on the path\n- The scene continues through 5713.000s\n- 5715.000s is black\n\nSo the scene is approximately 5705-5714 seconds. But I should check if it starts earlier than 5705. Let me look at the contact sheet again - at 5702.500s it shows a different indoor scene, so the transition to the outdoor path scene happens between 5702.5 and 5705.\n\n\nI'll investigate the precise moment the scene transitions, focusing on the narrow window between 5702.5 and 5705 seconds to pinpoint the exact start of the couple's walk.",
+          "media": [
+            "scene-evolved-010",
+            "scene-evolved-011",
+            "scene-evolved-012",
+            "scene-evolved-013",
+            "scene-evolved-014",
+            "scene-evolved-015"
+          ],
+          "parameters": {
+            "timestamps": [
+              5700,
+              5701,
+              5702,
+              5703,
+              5704,
+              5714
+            ],
+            "width": 960
+          },
+          "focus": "",
+          "tool": "extract_frames_at",
+          "phase": "prepare",
+          "summary": "Extract 6 timestamped frames for the next observation."
+        },
+        {
+          "number": 9,
+          "recordIndex": 10,
+          "event": "inspect_images",
+          "title": "Inspect six boundary frames",
+          "reasoning": "Check the boundary frames to determine when the couple walking scene starts and ends. Look at frames 5700-5704 to see when the couple first appears on the tree-lined path with golden light, and check frame 5714 to see if the scene is still visible or has ended. Report the exact start and end timestamps.",
+          "media": [
+            "scene-evolved-010",
+            "scene-evolved-011",
+            "scene-evolved-012",
+            "scene-evolved-013",
+            "scene-evolved-014",
+            "scene-evolved-015"
+          ],
+          "parameters": {},
+          "focus": "Check the boundary frames to determine when the couple walking scene starts and ends. Look at frames 5700-5704 to see when the couple first appears on the tree-lined path with golden light, and check frame 5714 to see if the scene is still visible or has ended. Report the exact start and end timestamps.",
+          "tool": "inspect_images",
+          "phase": "observe",
+          "summary": "Check the boundary frames to determine when the couple walking scene starts and ends. Look at frames 5700-5704 to see when the couple first appears on the tree-lined path with golden light, and check frame 5714 to see if the scene is still visible or has ended. Report the exact start and end timestamps."
+        },
+        {
+          "number": 10,
+          "recordIndex": 11,
+          "event": "final_answer",
+          "title": "Return the predicted interval",
+          "reasoning": "Based on the frames I've inspected:\n\n1. Frames 5700-5702 show an indoor scene with people, not the tree-lined path\n2. Frame 5703 shows the couple on the tree-lined path with golden light - this is when the scene starts\n3. Frame 5704 shows the couple walking on the path with golden light\n4. Frames 5705-5713 (from earlier inspection) show the couple walking on the path with golden light\n5. Frame 5714 shows the couple still visible but the scene is darker/fading\n6. Frame 5715 is black (scene has ended)\n7. Frame 5717 shows credits\n\nSo the scene starts at 5703 seconds when the couple first appears on the tree-lined path with golden light, and ends around 5714 seconds when the scene fades to black.\n\nLet me verify the end boundary more precisely. Frame 5714 still shows the couple walking but it's darker. Frame 5715 is completely black. So the scene ends between 5714 and 5715.\n\nThe event happens from approximately 5703 seconds to 5714 seconds.",
+          "media": [],
+          "parameters": {},
+          "focus": "",
+          "phase": "answer",
+          "tool": "final_answer",
+          "answer": "The event happens in 5703 - 5714 seconds.",
+          "summary": "Frame 5703 shows the couple first appearing on the tree-lined path with golden light. Frames 5704-5713 show them walking along the path. Frame 5714 shows the scene fading with the couple still visible. Frame 5715 is black, indicating the scene has ended."
+        }
+      ],
+      "media": [
+        {
+          "id": "scene-evolved-001",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-001.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-001-thumb.webp",
+          "kind": "image",
+          "start": 0.0,
+          "end": 750.625,
+          "frameCount": 24,
+          "sheet": 1,
+          "caption": "Sheet 1 · 0–750.625 s"
+        },
+        {
+          "id": "scene-evolved-002",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-002.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-002-thumb.webp",
+          "kind": "image",
+          "start": 750.625,
+          "end": 1501.25,
+          "frameCount": 24,
+          "sheet": 2,
+          "caption": "Sheet 2 · 750.625–1501.25 s"
+        },
+        {
+          "id": "scene-evolved-003",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-003.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-003-thumb.webp",
+          "kind": "image",
+          "start": 1501.25,
+          "end": 2251.875,
+          "frameCount": 24,
+          "sheet": 3,
+          "caption": "Sheet 3 · 1501.25–2251.88 s"
+        },
+        {
+          "id": "scene-evolved-004",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-004.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-004-thumb.webp",
+          "kind": "image",
+          "start": 2251.875,
+          "end": 3002.5,
+          "frameCount": 24,
+          "sheet": 4,
+          "caption": "Sheet 4 · 2251.88–3002.5 s"
+        },
+        {
+          "id": "scene-evolved-005",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-005.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-005-thumb.webp",
+          "kind": "image",
+          "start": 3002.5,
+          "end": 3753.125,
+          "frameCount": 24,
+          "sheet": 5,
+          "caption": "Sheet 5 · 3002.5–3753.12 s"
+        },
+        {
+          "id": "scene-evolved-006",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-006.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-006-thumb.webp",
+          "kind": "image",
+          "start": 3753.125,
+          "end": 4503.75,
+          "frameCount": 24,
+          "sheet": 6,
+          "caption": "Sheet 6 · 3753.12–4503.75 s"
+        },
+        {
+          "id": "scene-evolved-007",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-007.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-007-thumb.webp",
+          "kind": "image",
+          "start": 4503.75,
+          "end": 5254.375,
+          "frameCount": 24,
+          "sheet": 7,
+          "caption": "Sheet 7 · 4503.75–5254.38 s"
+        },
+        {
+          "id": "scene-evolved-008",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-008.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-008-thumb.webp",
+          "kind": "image",
+          "start": 5254.375,
+          "end": 6005.0,
+          "frameCount": 24,
+          "sheet": 8,
+          "caption": "Sheet 8 · 5254.38–6005 s"
+        },
+        {
+          "id": "scene-evolved-009",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-009.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-009-thumb.webp",
+          "kind": "image",
+          "start": 5680.0,
+          "end": 5740.0,
+          "frameCount": 12,
+          "caption": "5680–5740 s"
+        },
+        {
+          "id": "scene-evolved-010",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-010.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-010-thumb.webp",
+          "kind": "image",
+          "time": 5700.0,
+          "caption": "5700 s"
+        },
+        {
+          "id": "scene-evolved-011",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-011.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-011-thumb.webp",
+          "kind": "image",
+          "time": 5701.0,
+          "caption": "5701 s"
+        },
+        {
+          "id": "scene-evolved-012",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-012.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-012-thumb.webp",
+          "kind": "image",
+          "time": 5702.0,
+          "caption": "5702 s"
+        },
+        {
+          "id": "scene-evolved-013",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-013.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-013-thumb.webp",
+          "kind": "image",
+          "time": 5703.0,
+          "caption": "5703 s"
+        },
+        {
+          "id": "scene-evolved-014",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-014.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-014-thumb.webp",
+          "kind": "image",
+          "time": 5704.0,
+          "caption": "5704 s"
+        },
+        {
+          "id": "scene-evolved-015",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-015.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-015-thumb.webp",
+          "kind": "image",
+          "time": 5714.0,
+          "caption": "5714 s"
+        },
+        {
+          "id": "scene-evolved-016",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-016.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-016-thumb.webp",
+          "kind": "image",
+          "time": 5705.0,
+          "caption": "5705 s"
+        },
+        {
+          "id": "scene-evolved-017",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-017.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-017-thumb.webp",
+          "kind": "image",
+          "time": 5707.0,
+          "caption": "5707 s"
+        },
+        {
+          "id": "scene-evolved-018",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-018.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-018-thumb.webp",
+          "kind": "image",
+          "time": 5709.0,
+          "caption": "5709 s"
+        },
+        {
+          "id": "scene-evolved-019",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-019.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-019-thumb.webp",
+          "kind": "image",
+          "time": 5711.0,
+          "caption": "5711 s"
+        },
+        {
+          "id": "scene-evolved-020",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-020.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-020-thumb.webp",
+          "kind": "image",
+          "time": 5713.0,
+          "caption": "5713 s"
+        },
+        {
+          "id": "scene-evolved-021",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-021.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-021-thumb.webp",
+          "kind": "image",
+          "time": 5715.0,
+          "caption": "5715 s"
+        },
+        {
+          "id": "scene-evolved-022",
+          "src": "assets/images/cases/scene/evolved/scene-evolved-022.jpg",
+          "thumb": "assets/images/cases/scene/evolved/scene-evolved-022-thumb.webp",
+          "kind": "image",
+          "time": 5717.0,
+          "caption": "5717 s"
+        }
+      ]
+    }
+  },
+  "figure": "assets/images/figures/case-scene.webp",
+  "poster": "assets/images/cases/scene/cover.webp",
+  "insight": "This case highlights the importance of discovering a brief target during global search before investing in local boundary refinement.",
+  "reduction": 45.78
+}
