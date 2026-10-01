@@ -10,8 +10,7 @@
 🎓 **Zhejiang University, State Key Lab of CAD & CG**  
 <sup>†</sup> Corresponding author
 
-<!-- Add the arXiv URL to the Paper link when available. -->
-<a aria-disabled="true" title="arXiv link to be added"><img src="assets/images/readme/paper.svg" alt="Paper: Arxiv Link" height="28"></a>
+<a href="https://arxiv.org/abs/2609.40048" title="Read the paper on arXiv"><img src="assets/images/readme/paper.svg" alt="Paper: arXiv Link" height="28"></a>
 <a href="https://aim-uofa.github.io/CoEvoWhen/"><img src="assets/images/readme/project-page.svg" alt="Project: Page" height="28"></a>
 
 <br>
@@ -76,11 +75,11 @@ At inference, the VLM autonomously orchestrates media tools under the guidance o
 
 Coevolution improves grounding accuracy while simultaneously reducing visual token cost. The results below compare the base and evolved skills on Qwen3.5-27B, with relative gains and cost reductions measured against the base skill.
 
-| Benchmark        | Metric  | Base Skill | Evolved Skill |            Relative Gain |           Cost Reduction |
+| <sub>Benchmark</sub> | <sub>Metric</sub> | <sub>Base Skill</sub> | <sub>Evolved Skill</sub> | <sub>Relative Gain</sub> | <sub>Cost Reduction</sub> |
 | :--------------- | :------ | ---------: | ------------: | -----------------------: | -----------------------: |
-| VUE-LVTR         | IoU AUC |     0.4107 |    **0.5137** | <strong>↑ 25.1%</strong> | <strong>↓ 30.0%</strong> |
-| ExtremeWhenBench | mIoU    |     0.1507 |    **0.2636** | <strong>↑ 74.9%</strong> | <strong>↓ 11.4%</strong> |
-| CoMET-Bench      | mIoU    |     0.1355 |    **0.1635** | <strong>↑ 20.7%</strong> | <strong>↓ 18.9%</strong> |
+| <sub>VUE-LVTR</sub> | <sub>IoU AUC</sub> | <sub>0.4107</sub> | <sub>**0.5137**</sub> | <sub><strong>↑ 25.1%</strong></sub> | <sub><strong>↓ 30.0%</strong></sub> |
+| <sub>ExtremeWhenBench</sub> | <sub>mIoU</sub> | <sub>0.1507</sub> | <sub>**0.2636**</sub> | <sub><strong>↑ 74.9%</strong></sub> | <sub><strong>↓ 11.4%</strong></sub> |
+| <sub>CoMET-Bench</sub> | <sub>mIoU</sub> | <sub>0.1355</sub> | <sub>**0.1635**</sub> | <sub><strong>↑ 20.7%</strong></sub> | <sub><strong>↓ 18.9%</strong></sub> |
 
 ### Cross-VLM Generalization and Cross-Task Transfer
 
@@ -90,19 +89,19 @@ Consistent gains are also observed when skills are evolved separately on differe
 
 <table>
 <thead>
-<tr><th rowspan="2">VLM</th><th rowspan="2">Method</th><th colspan="3">VUE-LVTR</th><th colspan="2">ExtremeWhenBench</th><th colspan="2">CoMET-Bench</th></tr>
-<tr><th>Precision<br>AUC ↑</th><th>Recall<br>AUC ↑</th><th>IoU<br>AUC ↑</th><th>mIoU ↑</th><th>Recall@0.5 ↑</th><th>mIoU ↑</th><th>Rejection-F1 ↑</th></tr>
+<tr><th rowspan="2"><sub>VLM</sub></th><th rowspan="2"><sub>Method</sub></th><th colspan="3"><sub>VUE-LVTR</sub></th><th colspan="2"><sub>ExtremeWhenBench</sub></th><th colspan="2"><sub>CoMET-Bench</sub></th></tr>
+<tr><th><sub>Precision<br>AUC ↑</sub></th><th><sub>Recall<br>AUC ↑</sub></th><th><sub>IoU<br>AUC ↑</sub></th><th><sub>mIoU ↑</sub></th><th><sub>Recall@0.5 ↑</sub></th><th><sub>mIoU ↑</sub></th><th><sub>Rejection-F1 ↑</sub></th></tr>
 </thead>
 <tbody>
-<tr><th rowspan="3" valign="middle">Qwen3.5-9B</th><td>+ Base Skill</td><td align="center">0.3240</td><td align="center">0.3425</td><td align="center">0.2405</td><td align="center">0.0626</td><td align="center">0.0576</td><td align="center">0.0672</td><td align="center">67.51</td></tr>
-<tr><td><strong>+ Evolved Skill</strong></td><td align="center"><strong>0.4287</strong></td><td align="center"><strong>0.4707</strong></td><td align="center"><strong>0.3244</strong></td><td align="center"><strong>0.1247</strong></td><td align="center"><strong>0.1170</strong></td><td align="center"><strong>0.0852</strong></td><td align="center"><strong>68.80</strong></td></tr>
-<tr><td><strong>Evolution Gain</strong></td><td align="center"><strong>+0.1047</strong><br>↑ 32.3%</td><td align="center"><strong>+0.1282</strong><br>↑ 37.4%</td><td align="center"><strong>+0.0839</strong><br>↑ 34.9%</td><td align="center"><strong>+0.0621</strong><br>↑ 99.2%</td><td align="center"><strong>+0.0594</strong><br>↑ 103.1%</td><td align="center"><strong>+0.0180</strong><br>↑ 26.8%</td><td align="center"><strong>+1.29</strong><br>↑ 1.9%</td></tr>
-<tr><th rowspan="3" valign="middle">Qwen3.5-27B</th><td>+ Base Skill</td><td align="center">0.4706</td><td align="center">0.4789</td><td align="center">0.4107</td><td align="center">0.1507</td><td align="center">0.1478</td><td align="center">0.1355</td><td align="center">66.13</td></tr>
-<tr><td><strong>+ Evolved Skill</strong></td><td align="center"><strong>0.5918</strong></td><td align="center"><strong>0.5773</strong></td><td align="center"><strong>0.5137</strong></td><td align="center"><strong>0.2636</strong></td><td align="center"><strong>0.2785</strong></td><td align="center"><strong>0.1635</strong></td><td align="center"><strong>77.06</strong></td></tr>
-<tr><td><strong>Evolution Gain</strong></td><td align="center"><strong>+0.1212</strong><br>↑ 25.8%</td><td align="center"><strong>+0.0984</strong><br>↑ 20.5%</td><td align="center"><strong>+0.1030</strong><br>↑ 25.1%</td><td align="center"><strong>+0.1129</strong><br>↑ 74.9%</td><td align="center"><strong>+0.1307</strong><br>↑ 88.4%</td><td align="center"><strong>+0.0280</strong><br>↑ 20.7%</td><td align="center"><strong>+10.93</strong><br>↑ 16.5%</td></tr>
-<tr><th rowspan="3" valign="middle">Qwen3.6-27B</th><td>+ Base Skill</td><td align="center">0.5098</td><td align="center">0.5465</td><td align="center">0.4506</td><td align="center">0.1691</td><td align="center">0.1694</td><td align="center">0.1312</td><td align="center">68.53</td></tr>
-<tr><td><strong>+ Evolved Skill</strong></td><td align="center"><strong>0.5519</strong></td><td align="center"><strong>0.5727</strong></td><td align="center"><strong>0.4985</strong></td><td align="center"><strong>0.2109</strong></td><td align="center"><strong>0.2129</strong></td><td align="center"><strong>0.1477</strong></td><td align="center"><strong>72.37</strong></td></tr>
-<tr><td><strong>Evolution Gain</strong></td><td align="center"><strong>+0.0421</strong><br>↑ 8.3%</td><td align="center"><strong>+0.0262</strong><br>↑ 4.8%</td><td align="center"><strong>+0.0479</strong><br>↑ 10.6%</td><td align="center"><strong>+0.0418</strong><br>↑ 24.7%</td><td align="center"><strong>+0.0435</strong><br>↑ 25.7%</td><td align="center"><strong>+0.0165</strong><br>↑ 12.6%</td><td align="center"><strong>+3.84</strong><br>↑ 5.6%</td></tr>
+<tr><th rowspan="3" valign="middle"><sub>Qwen3.5-9B</sub></th><td><sub>+ Base Skill</sub></td><td align="center"><sub>0.3240</sub></td><td align="center"><sub>0.3425</sub></td><td align="center"><sub>0.2405</sub></td><td align="center"><sub>0.0626</sub></td><td align="center"><sub>0.0576</sub></td><td align="center"><sub>0.0672</sub></td><td align="center"><sub>67.51</sub></td></tr>
+<tr><td><sub><strong>+ Evolved Skill</strong></sub></td><td align="center"><sub><strong>0.4287</strong></sub></td><td align="center"><sub><strong>0.4707</strong></sub></td><td align="center"><sub><strong>0.3244</strong></sub></td><td align="center"><sub><strong>0.1247</strong></sub></td><td align="center"><sub><strong>0.1170</strong></sub></td><td align="center"><sub><strong>0.0852</strong></sub></td><td align="center"><sub><strong>68.80</strong></sub></td></tr>
+<tr><td><sub><strong>Evolution Gain</strong></sub></td><td align="center"><sub><strong>+0.1047</strong><br>↑ 32.3%</sub></td><td align="center"><sub><strong>+0.1282</strong><br>↑ 37.4%</sub></td><td align="center"><sub><strong>+0.0839</strong><br>↑ 34.9%</sub></td><td align="center"><sub><strong>+0.0621</strong><br>↑ 99.2%</sub></td><td align="center"><sub><strong>+0.0594</strong><br>↑ 103.1%</sub></td><td align="center"><sub><strong>+0.0180</strong><br>↑ 26.8%</sub></td><td align="center"><sub><strong>+1.29</strong><br>↑ 1.9%</sub></td></tr>
+<tr><th rowspan="3" valign="middle"><sub>Qwen3.5-27B</sub></th><td><sub>+ Base Skill</sub></td><td align="center"><sub>0.4706</sub></td><td align="center"><sub>0.4789</sub></td><td align="center"><sub>0.4107</sub></td><td align="center"><sub>0.1507</sub></td><td align="center"><sub>0.1478</sub></td><td align="center"><sub>0.1355</sub></td><td align="center"><sub>66.13</sub></td></tr>
+<tr><td><sub><strong>+ Evolved Skill</strong></sub></td><td align="center"><sub><strong>0.5918</strong></sub></td><td align="center"><sub><strong>0.5773</strong></sub></td><td align="center"><sub><strong>0.5137</strong></sub></td><td align="center"><sub><strong>0.2636</strong></sub></td><td align="center"><sub><strong>0.2785</strong></sub></td><td align="center"><sub><strong>0.1635</strong></sub></td><td align="center"><sub><strong>77.06</strong></sub></td></tr>
+<tr><td><sub><strong>Evolution Gain</strong></sub></td><td align="center"><sub><strong>+0.1212</strong><br>↑ 25.8%</sub></td><td align="center"><sub><strong>+0.0984</strong><br>↑ 20.5%</sub></td><td align="center"><sub><strong>+0.1030</strong><br>↑ 25.1%</sub></td><td align="center"><sub><strong>+0.1129</strong><br>↑ 74.9%</sub></td><td align="center"><sub><strong>+0.1307</strong><br>↑ 88.4%</sub></td><td align="center"><sub><strong>+0.0280</strong><br>↑ 20.7%</sub></td><td align="center"><sub><strong>+10.93</strong><br>↑ 16.5%</sub></td></tr>
+<tr><th rowspan="3" valign="middle"><sub>Qwen3.6-27B</sub></th><td><sub>+ Base Skill</sub></td><td align="center"><sub>0.5098</sub></td><td align="center"><sub>0.5465</sub></td><td align="center"><sub>0.4506</sub></td><td align="center"><sub>0.1691</sub></td><td align="center"><sub>0.1694</sub></td><td align="center"><sub>0.1312</sub></td><td align="center"><sub>68.53</sub></td></tr>
+<tr><td><sub><strong>+ Evolved Skill</strong></sub></td><td align="center"><sub><strong>0.5519</strong></sub></td><td align="center"><sub><strong>0.5727</strong></sub></td><td align="center"><sub><strong>0.4985</strong></sub></td><td align="center"><sub><strong>0.2109</strong></sub></td><td align="center"><sub><strong>0.2129</strong></sub></td><td align="center"><sub><strong>0.1477</strong></sub></td><td align="center"><sub><strong>72.37</strong></sub></td></tr>
+<tr><td><sub><strong>Evolution Gain</strong></sub></td><td align="center"><sub><strong>+0.0421</strong><br>↑ 8.3%</sub></td><td align="center"><sub><strong>+0.0262</strong><br>↑ 4.8%</sub></td><td align="center"><sub><strong>+0.0479</strong><br>↑ 10.6%</sub></td><td align="center"><sub><strong>+0.0418</strong><br>↑ 24.7%</sub></td><td align="center"><sub><strong>+0.0435</strong><br>↑ 25.7%</sub></td><td align="center"><sub><strong>+0.0165</strong><br>↑ 12.6%</sub></td><td align="center"><sub><strong>+3.84</strong><br>↑ 5.6%</sub></td></tr>
 </tbody>
 </table>
 
@@ -110,19 +109,19 @@ Consistent gains are also observed when skills are evolved separately on differe
 
 <table>
 <thead>
-<tr><th rowspan="2">VLM</th><th rowspan="2">Method</th><th>LVBench</th><th>LSDBench</th></tr>
-<tr><th>Overall Acc. (%) ↑</th><th>Overall Acc. (%) ↑</th></tr>
+<tr><th rowspan="2"><sub>VLM</sub></th><th rowspan="2"><sub>Method</sub></th><th><sub>LVBench</sub></th><th><sub>LSDBench</sub></th></tr>
+<tr><th><sub>Overall Acc. (%) ↑</sub></th><th><sub>Overall Acc. (%) ↑</sub></th></tr>
 </thead>
 <tbody>
-<tr><th rowspan="3" valign="middle">Qwen3.5-9B</th><td>+ Base Skill</td><td align="center">40.09</td><td align="center">49.08</td></tr>
-<tr><td><strong>+ Evolved Skill</strong></td><td align="center"><strong>45.84</strong></td><td align="center"><strong>53.68</strong></td></tr>
-<tr><td><strong>Evolution Gain</strong></td><td align="center"><strong>+5.75</strong><br>↑ 14.3%</td><td align="center"><strong>+4.60</strong><br>↑ 9.4%</td></tr>
-<tr><th rowspan="3" valign="middle">Qwen3.5-27B</th><td>+ Base Skill</td><td align="center">45.45</td><td align="center">61.27</td></tr>
-<tr><td><strong>+ Evolved Skill</strong></td><td align="center"><strong>54.10</strong></td><td align="center"><strong>69.25</strong></td></tr>
-<tr><td><strong>Evolution Gain</strong></td><td align="center"><strong>+8.65</strong><br>↑ 19.0%</td><td align="center"><strong>+7.98</strong><br>↑ 13.0%</td></tr>
-<tr><th rowspan="3" valign="middle">Qwen3.6-27B</th><td>+ Base Skill</td><td align="center">48.55</td><td align="center">61.12</td></tr>
-<tr><td><strong>+ Evolved Skill</strong></td><td align="center"><strong>54.36</strong></td><td align="center"><strong>65.64</strong></td></tr>
-<tr><td><strong>Evolution Gain</strong></td><td align="center"><strong>+5.81</strong><br>↑ 12.0%</td><td align="center"><strong>+4.52</strong><br>↑ 7.4%</td></tr>
+<tr><th rowspan="3" valign="middle"><sub>Qwen3.5-9B</sub></th><td><sub>+ Base Skill</sub></td><td align="center"><sub>40.09</sub></td><td align="center"><sub>49.08</sub></td></tr>
+<tr><td><sub><strong>+ Evolved Skill</strong></sub></td><td align="center"><sub><strong>45.84</strong></sub></td><td align="center"><sub><strong>53.68</strong></sub></td></tr>
+<tr><td><sub><strong>Evolution Gain</strong></sub></td><td align="center"><sub><strong>+5.75</strong><br>↑ 14.3%</sub></td><td align="center"><sub><strong>+4.60</strong><br>↑ 9.4%</sub></td></tr>
+<tr><th rowspan="3" valign="middle"><sub>Qwen3.5-27B</sub></th><td><sub>+ Base Skill</sub></td><td align="center"><sub>45.45</sub></td><td align="center"><sub>61.27</sub></td></tr>
+<tr><td><sub><strong>+ Evolved Skill</strong></sub></td><td align="center"><sub><strong>54.10</strong></sub></td><td align="center"><sub><strong>69.25</strong></sub></td></tr>
+<tr><td><sub><strong>Evolution Gain</strong></sub></td><td align="center"><sub><strong>+8.65</strong><br>↑ 19.0%</sub></td><td align="center"><sub><strong>+7.98</strong><br>↑ 13.0%</sub></td></tr>
+<tr><th rowspan="3" valign="middle"><sub>Qwen3.6-27B</sub></th><td><sub>+ Base Skill</sub></td><td align="center"><sub>48.55</sub></td><td align="center"><sub>61.12</sub></td></tr>
+<tr><td><sub><strong>+ Evolved Skill</strong></sub></td><td align="center"><sub><strong>54.36</strong></sub></td><td align="center"><sub><strong>65.64</strong></sub></td></tr>
+<tr><td><sub><strong>Evolution Gain</strong></sub></td><td align="center"><sub><strong>+5.81</strong><br>↑ 12.0%</sub></td><td align="center"><sub><strong>+4.52</strong><br>↑ 7.4%</sub></td></tr>
 </tbody>
 </table>
 
@@ -142,10 +141,10 @@ Consistent gains are also observed when skills are evolved separately on differe
 
 On the VUE-LVTR held-out set with Qwen3.5-27B, joint evolution achieves the following relative improvements over the policy-only and tool-only variants:
 
-| Comparison      |      IoU AUC Improvement |   Visual Token Reduction |
+| <sub>Comparison</sub> | <sub>IoU AUC Improvement</sub> | <sub>Visual Token Reduction</sub> |
 | :-------------- | -----------------------: | -----------------------: |
-| vs. Policy-only |  <strong>↑ 5.0%</strong> | <strong>↓ 40.6%</strong> |
-| vs. Tool-only   | <strong>↑ 16.7%</strong> | <strong>↓ 25.5%</strong> |
+| <sub>vs. Policy-only</sub> | <sub><strong>↑ 5.0%</strong></sub> | <sub><strong>↓ 40.6%</strong></sub> |
+| <sub>vs. Tool-only</sub> | <sub><strong>↑ 16.7%</strong></sub> | <sub><strong>↓ 25.5%</strong></sub> |
 
 ### Ablation on Image–Video Coordination
 
@@ -153,11 +152,11 @@ Both single-modality variants improve grounding performance through evolution. T
 
 Evolved skills on the VUE-LVTR held-out set with Qwen3.5-27B:
 
-| Observation Mode |  IoU AUC ↑ | Visual Tokens (k/query) ↓ |
+| <sub>Observation Mode</sub> | <sub>IoU AUC ↑</sub> | <sub>Visual Tokens (k/query) ↓</sub> |
 | :--------------- | ---------: | ------------------------: |
-| Image only       |     0.4374 |                    194.60 |
-| Video only       |     0.4772 |                    221.98 |
-| Image + video    | **0.5137** |                **141.89** |
+| <sub>Image only</sub> | <sub>0.4374</sub> | <sub>194.60</sub> |
+| <sub>Video only</sub> | <sub>0.4772</sub> | <sub>221.98</sub> |
+| <sub>Image + video</sub> | <sub>**0.5137**</sub> | <sub>**141.89**</sub> |
 
 ### Analysis of Skill Evolution
 
@@ -179,14 +178,14 @@ As evolution proceeds, the skill achieves higher grounding accuracy with lower v
 
 We analyze the execution trajectories of the base and evolved skills on two ExtremeWhenBench queries to illustrate how policy–tool coevolution changes evidence acquisition for action and scene localization in ultra-long videos.
 
-|                        |                                                           Candidate Localization and Motion Verification                                                           |                                                                       Long-Range Search and Boundary Refinement                                                                       |
+|                        | <sub>Candidate Localization and Motion Verification</sub> | <sub>Long-Range Search and Boundary Refinement</sub> |
 | :--------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |                        | <a href="https://aim-uofa.github.io/CoEvoWhen/#case-motion"><img src="assets/images/readme/motion-preview.svg" width="320" alt="Scooping fries with a metal skimmer"></a> | <a href="https://aim-uofa.github.io/CoEvoWhen/#case-scene"><img src="assets/images/readme/scene-preview.svg" width="320" alt="A couple walking along a tree-lined path in golden light"></a> |
-| Video duration         |                                                                            50.6 minutes                                                                            |                                                                                     100.1 minutes                                                                                     |
-| Temporal grounding IoU |                                                                          0.00 → **1.00**                                                                           |                                                                                    0.00 → **1.00**                                                                                    |
-| Visual token cost      |                                                                        198.68k → **96.81k**                                                                        |                                                                                 237.60k → **128.82k**                                                                                 |
-| Cost reduction         |                                                                     <strong>↓ 51.27%</strong>                                                                      |                                                                               <strong>↓ 45.78%</strong>                                                                               |
-| Recorded trajectories  |                                            [View the trajectories →](https://aim-uofa.github.io/CoEvoWhen/#case-motion)                                            |                                                      [View the trajectories →](https://aim-uofa.github.io/CoEvoWhen/#case-scene)                                                      |
+| <sub>Video duration</sub> | <sub>50.6 minutes</sub> | <sub>100.1 minutes</sub> |
+| <sub>Temporal grounding IoU</sub> | <sub>0.00 → **1.00**</sub> | <sub>0.00 → **1.00**</sub> |
+| <sub>Visual token cost</sub> | <sub>198.68k → **96.81k**</sub> | <sub>237.60k → **128.82k**</sub> |
+| <sub>Cost reduction</sub> | <sub><strong>↓ 51.27%</strong></sub> | <sub><strong>↓ 45.78%</strong></sub> |
+| <sub>Recorded trajectories</sub> | <sub>[View the trajectories →](https://aim-uofa.github.io/CoEvoWhen/#case-motion)</sub> | <sub>[View the trajectories →](https://aim-uofa.github.io/CoEvoWhen/#case-scene)</sub> |
 
 The first case illustrates how better candidate localization allows video observation to focus on verifying query-specific motion, reducing repeated inspection of an incorrect region. The second highlights the importance of discovering a brief target during global search before investing in local boundary refinement.
 
@@ -196,8 +195,14 @@ The first case illustrates how better candidate localization allows video observ
 
 If you find CoEvoWhen useful for your research, please cite:
 
-<!-- Insert the official arXiv BibTeX entry after release, matching the project page. -->
-
 ```bibtex
-
+@misc{jia2026coevowhenpolicytoolcoevolutionultralong,
+  title={CoEvoWhen: Policy-Tool Coevolution for Ultra-Long Video Temporal Grounding},
+  author={Yiduo Jia and Muzhi Zhu and Jinchuan Shi and Hao Zhong and Yuling Xi and Ke Liu and Hao Chen},
+  year={2026},
+  eprint={2609.40048},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2609.40048}
+}
 ```
